@@ -1,8 +1,8 @@
 <!--
  E-Commerce 
- Team Project
+ Assignment01 Part03
  Maximus Taube
- 2095310
+ 2095310 
 -->
 
 <?php
