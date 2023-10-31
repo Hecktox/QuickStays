@@ -1,10 +1,3 @@
-<!--
- E-Commerce 
- Assignment01 Part03
- Maximus Taube
- 2095310 
--->
-
 <?php
 $host = 'localhost';
 $dbname = 'quickstays_db';

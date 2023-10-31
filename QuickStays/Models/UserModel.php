@@ -1,10 +1,3 @@
-<!--
- E-Commerce 
- Assignment01 Part03
- Maximus Taube
- 2095310 
--->
-
 <?php
 require_once 'db_connect.php';
 
@@ -37,5 +30,40 @@ class UserModel
 
         return $user;
     }
+
+    public function addUser($firstName, $lastName, $email, $password, $userType)
+    {
+        global $db;
+        $hashedPassword = md5($password);
+        $query = $db->prepare("INSERT INTO Users (FirstName, LastName, Email, Password, UserType) VALUES (?, ?, ?, ?, ?)");
+        $query->execute([$firstName, $lastName, $email, $hashedPassword, $userType]);
+    }
+
+    public function deleteUser($userID)
+    {
+        global $db;
+        $query = $db->prepare("DELETE FROM Users WHERE UserID = ?");
+        $query->execute([$userID]);
+    }
+
+    public function loginUser($email, $password)
+    {
+        global $db;
+        $hashedPassword = md5($password);
+        $query = $db->prepare("SELECT * FROM Users WHERE Email = ? AND Password = ?");
+        $query->execute([$email, $hashedPassword]);
+        $user = $query->fetch(PDO::FETCH_ASSOC);
+
+        return $user;
+    }
+
+    public function registerUser($firstName, $lastName, $email, $password, $userType)
+    {
+        global $db;
+        $hashedPassword = md5($password);
+        $query = $db->prepare("INSERT INTO Users (FirstName, LastName, Email, Password, UserType) VALUES (?, ?, ?, ?, ?)");
+        $query->execute([$firstName, $lastName, $email, $hashedPassword, $userType]);
+    }
+
 }
 ?>

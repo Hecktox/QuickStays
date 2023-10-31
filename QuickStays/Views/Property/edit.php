@@ -1,38 +1,58 @@
-<!-- 
-    All I did here was change the file name to work with my stucture,
-    and modified the form to adapt to the new database. - Maximus
--->
-<h1>Edit Property</h1>
-<form action="index.php?entity=property&action=edit&PropertyID=<?= $property['PropertyID'] ?>" method="post">
-    <input type="hidden" name="PropertyID" value="<?= $property['PropertyID'] ?>">
+<!DOCTYPE html>
+<html>
 
-    Property Name: <input type="text" name="PropertyName" value="<?= $property['PropertyName'] ?>"><br>
+<head>
+    <title>Edit Property</title>
+</head>
 
-    Country: <input type="text" name="Country" value="<?= $property['Country'] ?>"><br>
+<body>
+    <h1>Edit Property</h1>
+    <!-- Display the property data for editing -->
+    <form method="POST" action="list_page.php?entity=property&action=edit">
+        <input type="hidden" name="PropertyID" value="<?php echo $property['PropertyID']; ?>">
+        <label for="PropertyName">Property Name:</label>
+        <input type="text" name="PropertyName" value="<?php echo $property['PropertyName']; ?>" required><br>
 
-    City: <input type="text" name="City" value="<?= $property['City'] ?>"><br>
+        <label for="Country">Country:</label>
+        <input type="text" name="Country" value="<?php echo $property['Country']; ?>" required><br>
 
-    Province: <input type="text" name="Province" value="<?= $property['Province'] ?>"><br>
+        <label for="City">City:</label>
+        <input type="text" name="City" value="<?php echo $property['City']; ?>" required><br>
 
-    Street Address: <input type="text" name="StreetAddress" value="<?= $property['StreetAddress'] ?>"><br>
+        <label for="Province">Province:</label>
+        <input type="text" name="Province" value="<?php echo $property['Province']; ?>" required><br>
 
-    Description: <textarea name="Description"><?= $property['Description'] ?></textarea><br>
+        <label for="StreetAddress">Street Address:</label>
+        <input type="text" name="StreetAddress" value="<?php echo $property['StreetAddress']; ?>" required><br>
 
-    Property Type:
-    <select name="PropertyType">
-        <option value="House" <?= ($property['PropertyType'] == 'House') ? 'selected' : '' ?>>House</option>
-        <option value="Apartment" <?= ($property['PropertyType'] == 'Apartment') ? 'selected' : '' ?>>Apartment</option>
-        <option value="Condo" <?= ($property['PropertyType'] == 'Condo') ? 'selected' : '' ?>>Condo</option>
-        <option value="Duplex" <?= ($property['PropertyType'] == 'Duplex') ? 'selected' : '' ?>>Duplex</option>
-    </select><br>
+        <label for="Description">Description:</label>
+        <textarea name="Description"><?php echo $property['Description']; ?></textarea><br>
 
-    Number of Rooms: <input type="number" name="NumRooms" value="<?= $property['NumRooms'] ?>"><br>
+        <label for="PropertyType">Property Type:</label>
+        <select name="PropertyType">
+            <option value="House" <?php if ($property['PropertyType'] === 'House')
+                echo 'selected'; ?>>House</option>
+            <option value="Apartment" <?php if ($property['PropertyType'] === 'Apartment')
+                echo 'selected'; ?>>Apartment
+            </option>
+            <option value="Condo" <?php if ($property['PropertyType'] === 'Condo')
+                echo 'selected'; ?>>Condo</option>
+            <option value="Duplex" <?php if ($property['PropertyType'] === 'Duplex')
+                echo 'selected'; ?>>Duplex</option>
+        </select><br>
 
-    Number of Bathrooms: <input type="number" name="NumBathrooms" value="<?= $property['NumBathrooms'] ?>"><br>
+        <label for="NumRooms">Number of Rooms:</label>
+        <input type="number" name="NumRooms" value="<?php echo $property['NumRooms']; ?>"><br>
 
-    Availability Date: <input type="date" name="AvailabilityDate" value="<?= $property['AvailabilityDate'] ?>"><br>
+        <label for="NumBathrooms">Number of Bathrooms:</label>
+        <input type="number" name="NumBathrooms" value="<?php echo $property['NumBathrooms']; ?>"><br>
 
-    <input type="submit" name="save" value="Save">
-    <a href="index.php?entity=property&action=list">View Properties</a>
+        <label for="AvailabilityDate">Availability Date:</label>
+        <input type="date" name="AvailabilityDate" value="<?php echo $property['AvailabilityDate']; ?>"><br>
 
-</form>
+        <input type="submit" name="saveProperty" value="Save">
+        <button type="button" onclick="window.location.href='list_page.php?entity=property&action=list'">Cancel</button>
+    </form>
+</body>
+
+</html>

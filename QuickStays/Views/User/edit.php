@@ -1,10 +1,3 @@
-<!--
- E-Commerce 
- Assignment01 Part03
- Maximus Taube
- 2095310 
--->
-
 <!DOCTYPE html>
 <html>
 
@@ -30,7 +23,7 @@
 <body>
     <h1>Edit User</h1>
     <!-- Display the user data for editing -->
-    <form method="POST" action="index.php?entity=user&action=edit">
+    <form method="POST" action="list_page.php?entity=user&action=edit">
         <input type="hidden" name="userID" value="<?php echo $user['UserID']; ?>">
         <label for="firstName">First Name:</label>
         <input type="text" name="firstName" value="<?php echo $user['FirstName']; ?>" required><br>
@@ -54,7 +47,7 @@
         </select><br>
 
         <input type="submit" name="saveUser" value="Save">
-        <a href='index.php?entity=user&action=list'>View</a>
+        <button type="button" onclick="window.location.href='list_page.php?entity=user&action=list'">Cancel</button>
     </form>
 </body>
 

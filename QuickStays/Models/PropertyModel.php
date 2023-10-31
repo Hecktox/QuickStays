@@ -1,33 +1,44 @@
-<!-- 
-    All I did here was change the file name and path 
-    strings within the file to work with my stucture,
-    and modified the updateProperty() function to 
-    adapt to the new database and used $db instead of $pdo 
-    to adapt to 'db_connect.php'. - Maximus
--->
-
 <?php
 require_once 'db_connect.php';
 
-function getProperties()
+class PropertyModel
 {
-    global $db;
-    $stmt = $db->query('SELECT * FROM Properties');
-    return $stmt->fetchAll();
-}
+    public function getProperties()
+    {
+        global $db;
+        $query = $db->query("SELECT * FROM Properties");
+        return $query->fetchAll(PDO::FETCH_ASSOC);
+    }
 
-function getPropertyById($id)
-{
-    global $db;
-    $stmt = $db->prepare('SELECT * FROM Properties WHERE PropertyID = ?');
-    $stmt->execute([$id]);
-    return $stmt->fetch();
-}
+    public function updateProperty($propertyID, $propertyName, $country, $city, $province, $streetAddress, $description, $propertyType, $numRooms, $numBathrooms, $availabilityDate)
+    {
+        global $db;
+        $query = $db->prepare("UPDATE Properties SET PropertyName=?, Country=?, City=?, Province=?, StreetAddress=?, Description=?, PropertyType=?, NumRooms=?, NumBathrooms=?, AvailabilityDate=? WHERE PropertyID=?");
+        $query->execute([$propertyName, $country, $city, $province, $streetAddress, $description, $propertyType, $numRooms, $numBathrooms, $availabilityDate, $propertyID]);
+    }
 
-function updateProperty($id, $name, $country, $city, $province, $address, $description, $type, $rooms, $bathrooms, $availabilityDate)
-{
-    global $db;
-    $stmt = $db->prepare('UPDATE Properties SET PropertyName=?, Country=?, City=?, Province=?, StreetAddress=?, Description=?, PropertyType=?, NumRooms=?, NumBathrooms=?, AvailabilityDate=? WHERE PropertyID=?');
-    $stmt->execute([$name, $country, $city, $province, $address, $description, $type, $rooms, $bathrooms, $availabilityDate, $id]);
+    public function getPropertyByID($propertyID)
+    {
+        global $db;
+        $query = $db->prepare("SELECT * FROM Properties WHERE PropertyID = ?");
+        $query->execute([$propertyID]);
+        $property = $query->fetch(PDO::FETCH_ASSOC);
+        return $property;
+    }
+
+    public function addProperty($PropertyName, $Country, $City, $Province, $StreetAddress, $Description, $PropertyType, $NumRooms, $NumBathrooms, $AvailabilityDate)
+    {
+        global $db;
+        $query = $db->prepare("INSERT INTO Properties (PropertyName, Country, City, Province, StreetAddress, Description, PropertyType, NumRooms, NumBathrooms, AvailabilityDate) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+        $query->execute([$PropertyName, $Country, $City, $Province, $StreetAddress, $Description, $PropertyType, $NumRooms, $NumBathrooms, $AvailabilityDate]);
+    }
+
+    public function deleteProperty($propertyID)
+    {
+        global $db;
+        $query = $db->prepare("DELETE FROM Properties WHERE PropertyID = ?");
+        $query->execute([$propertyID]);
+    }
+
 }
 ?>
