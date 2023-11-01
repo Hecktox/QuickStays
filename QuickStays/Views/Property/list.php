@@ -7,8 +7,10 @@
 
 <body>
     <h1>Property List</h1>
-    <button onclick="window.location.href='index.php';">Back to Entity Selection</button>
-    <button onclick="window.location.href='list_page.php?entity=property&action=add'">Add Property</button>
+    <button onclick="window.location.href='/eCommerce-Project/QuickStays/Views/Admin/index.php';">Back to Entity
+        Selection</button>
+    <button onclick="window.location.href='/eCommerce-Project/QuickStays/index.php?entity=property&action=add'">Add
+        Property</button>
     <table border="1">
         <tr>
             <th>Property ID</th>
@@ -52,12 +54,12 @@
         // JavaScript function to confirm property deletion
         function confirmDelete(propertyID) {
             if (confirm("Are you sure you want to delete this property?")) {
-                window.location.href = "list_page.php?entity=property&action=delete&PropertyID=" + propertyID;
+                window.location.href = "/eCommerce-Project/QuickStays/index.php?entity=property&action=delete&PropertyID=" + propertyID;
             }
         }
 
         function editProperty(propertyID) {
-            window.location.href = "list_page.php?entity=property&action=edit&PropertyID=" + propertyID;
+            window.location.href = "/eCommerce-Project/QuickStays/index.php?entity=property&action=edit&PropertyID=" + propertyID;
         }
     </script>
 </body>

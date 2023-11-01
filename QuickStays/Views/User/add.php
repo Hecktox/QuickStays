@@ -8,7 +8,7 @@
 <body>
     <h1>Add User</h1>
     <!-- Form to add a new user -->
-    <form method="POST" action="list_page.php?entity=user&action=add">
+    <form method="POST" action="/eCommerce-Project/QuickStays/index.php?entity=user&action=add">
         <label for="firstName">First Name:</label>
         <input type="text" name="firstName" required><br>
 
@@ -28,7 +28,8 @@
         </select><br>
 
         <input type="submit" name="addUser" value="Add User">
-        <button type="button" onclick="window.location.href='list_page.php?entity=user&action=list'">Cancel</button>
+        <button type="button"
+            onclick="window.location.href='/eCommerce-Project/QuickStays/index.php?entity=user&action=list'">Cancel</button>
     </form>
 </body>
 

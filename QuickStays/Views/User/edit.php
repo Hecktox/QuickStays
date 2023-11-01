@@ -23,7 +23,7 @@
 <body>
     <h1>Edit User</h1>
     <!-- Display the user data for editing -->
-    <form method="POST" action="list_page.php?entity=user&action=edit">
+    <form method="POST" action="/eCommerce-Project/QuickStays/index.php?entity=user&action=edit">
         <input type="hidden" name="userID" value="<?php echo $user['UserID']; ?>">
         <label for="firstName">First Name:</label>
         <input type="text" name="firstName" value="<?php echo $user['FirstName']; ?>" required><br>
@@ -47,7 +47,8 @@
         </select><br>
 
         <input type="submit" name="saveUser" value="Save">
-        <button type="button" onclick="window.location.href='list_page.php?entity=user&action=list'">Cancel</button>
+        <button type="button"
+            onclick="window.location.href='/eCommerce-Project/QuickStays/index.php?entity=user&action=list'">Cancel</button>
     </form>
 </body>
 

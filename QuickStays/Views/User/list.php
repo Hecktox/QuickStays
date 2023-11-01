@@ -7,8 +7,10 @@
 
 <body>
     <h1>User List</h1>
-    <button onclick="window.location.href='index.php';">Back to Entity Selection</button>
-    <button onclick="window.location.href='list_page.php?entity=user&action=add'">Add User</button>
+    <button onclick="window.location.href='/eCommerce-Project/QuickStays/Views/Admin/index.php';">Back to Entity
+        Selection</button>
+    <button onclick="window.location.href='/eCommerce-Project/QuickStays/index.php?entity=user&action=add'">Add
+        User</button>
     <table border="1">
         <tr>
             <th>User ID</th>
@@ -42,12 +44,12 @@
         // JavaScript function to confirm user deletion
         function confirmDelete(userID) {
             if (confirm("Are you sure you want to delete this user?")) {
-                window.location.href = "list_page.php?entity=user&action=delete&userID=" + userID;
+                window.location.href = "/eCommerce-Project/QuickStays/index.php?entity=user&action=delete&userID=" + userID;
             }
         }
 
         function editUser(userID) {
-            window.location.href = "list_page.php?entity=user&action=edit&userID=" + userID;
+            window.location.href = "/eCommerce-Project/QuickStays/index.php?entity=user&action=edit&userID=" + userID;
         }
     </script>
 </body>

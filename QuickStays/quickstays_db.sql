@@ -63,3 +63,11 @@ CREATE TABLE Bookings (
     FOREIGN KEY (UserID) REFERENCES Users(UserID),
     FOREIGN KEY (PropertyID) REFERENCES Properties(PropertyID)
 );
+
+CREATE TABLE Admins (
+    AdminID INT AUTO_INCREMENT PRIMARY KEY,
+    FirstName VARCHAR(255),
+    LastName VARCHAR(255),
+    Email VARCHAR(255) UNIQUE,
+    Password VARCHAR(255);
+);

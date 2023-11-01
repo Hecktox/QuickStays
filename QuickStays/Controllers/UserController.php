@@ -3,6 +3,11 @@ require_once 'Models/UserModel.php';
 
 class UserController
 {
+    public function index()
+    {
+        include 'Views/User/index.php';
+    }
+
     public function list()
     {
         // Get the list of users from the database by creating an instance of the UserModel class
@@ -30,7 +35,7 @@ class UserController
 
                 // Update the user's data in the UserModel and displays success or error message if the user is found or not
                 $userModel->updateUser($userID, $firstName, $lastName, $email, $password, $userType);
-                header('Location: list_page.php?entity=user&action=list');
+                header('Location: /eCommerce-Project/QuickStays/index.php?entity=user&action=list');
                 exit();
             } else {
                 echo "<p>User not found!</p>";
@@ -68,7 +73,7 @@ class UserController
             $userModel->addUser($firstName, $lastName, $email, $password, $userType);
 
             // Redirect to the user list
-            header('Location: list_page.php?entity=user&action=list');
+            header('Location: /eCommerce-Project/QuickStays/index.php?entity=user&action=list');
             exit();
         } else {
             include 'Views/User/add.php';
@@ -84,42 +89,13 @@ class UserController
 
             if ($user) {
                 $userModel->deleteUser($userID);
-                header('Location: list_page.php?entity=user&action=list');
+                header('Location: /eCommerce-Project/QuickStays/index.php?entity=user&action=list');
                 exit();
             } else {
                 echo "<p>User not found!</p>";
             }
         } else {
             echo "<p>Invalid user ID!</p>";
-        }
-    }
-
-    public function login()
-    {
-        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['loginUser'])) {
-            $email = $_POST['email'];
-            $password = $_POST['password'];
-            $userModel = new UserModel();
-
-            // Check if the login credentials are valid
-            $user = $userModel->loginUser($email, $password);
-
-            if ($user) {
-                // Start a session to manage user authentication
-                session_start();
-
-                // Store user information in a session variable
-                $_SESSION['user_id'] = $user['UserID'];
-                $_SESSION['user_email'] = $user['Email'];
-
-                // Redirect to a dashboard or other page
-                header('Location: Views/dashboard.php');
-                exit();
-            } else {
-                echo "<p>Invalid login credentials!</p>";
-            }
-        } else {
-            include 'Views/User/login.php';
         }
     }
 
@@ -133,10 +109,10 @@ class UserController
             $userType = $_POST['userType'];
 
             $userModel = new UserModel();
-            $userModel->registerUser($firstName, $lastName, $email, $password, $userType);
+            $userModel->addUser($firstName, $lastName, $email, $password, $userType);
 
             // Redirect to the login page after registration
-            header('Location: list_page.php?entity=user&action=login');
+            header('Location: /eCommerce-Project/QuickStays/index.php?entity=login&action=login');
             exit();
         } else {
             include 'Views/User/register.php';

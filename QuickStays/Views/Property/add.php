@@ -8,7 +8,7 @@
 <body>
     <h1>Add Property</h1>
     <!-- Form to add a new property -->
-    <form method="POST" action="list_page.php?entity=property&action=add">
+    <form method="POST" action="/eCommerce-Project/QuickStays/index.php?entity=property&action=add">
         <label for="PropertyName">Property Name:</label>
         <input type="text" name="PropertyName" required><br>
 
@@ -45,7 +45,8 @@
         <input type="date" name="AvailabilityDate" required><br>
 
         <input type="submit" name="addProperty" value="Add Property">
-        <button type="button" onclick="window.location.href='list_page.php?entity=property&action=list'">Cancel</button>
+        <button type="button"
+            onclick="window.location.href='/eCommerce-Project/QuickStays/index.php?entity=property&action=list'">Cancel</button>
     </form>
 </body>
 

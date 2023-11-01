@@ -35,7 +35,7 @@ class PropertyController
 
                 // Update the property's data in the PropertyModel and display success or error message if the property is found or not
                 $propertyModel->updateProperty($propertyID, $propertyName, $country, $city, $province, $streetAddress, $description, $propertyType, $numRooms, $numBathrooms, $availabilityDate);
-                header('Location: list_page.php?entity=property&action=list');
+                header('Location: /eCommerce-Project/QuickStays/index.php?entity=property&action=list');
                 exit();
             } else {
                 echo "<p>Property not found!</p>";
@@ -76,7 +76,7 @@ class PropertyController
             $propertyModel->addProperty($PropertyName, $Country, $City, $Province, $StreetAddress, $Description, $PropertyType, $NumRooms, $NumBathrooms, $AvailabilityDate);
 
             // Redirect to the property list
-            header('Location: list_page.php?entity=property&action=list');
+            header('Location: /eCommerce-Project/QuickStays/index.php?entity=property&action=list');
             exit();
         } else {
             include 'Views/Property/add.php';
@@ -92,7 +92,7 @@ class PropertyController
 
             if ($property) {
                 $propertyModel->deleteProperty($propertyID);
-                header('Location: list_page.php?entity=property&action=list');
+                header('Location: /eCommerce-Project/QuickStays/index.php?entity=property&action=list');
                 exit();
             } else {
                 echo "<p>Property not found!</p>";

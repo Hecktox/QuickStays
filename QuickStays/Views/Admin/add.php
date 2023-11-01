@@ -2,12 +2,12 @@
 <html>
 
 <head>
-    <title>Register</title>
+    <title>Add Admin</title>
 </head>
 
 <body>
-    <h1>Register</h1>
-    <form method="POST" action="/eCommerce-Project/QuickStays/index.php?entity=user&action=register">
+    <h1>Add Admin</h1>
+    <form method="POST" action="/eCommerce-Project/QuickStays/index.php?entity=admin&action=add">
         <label for="firstName">First Name:</label>
         <input type="text" name="firstName" required><br>
 
@@ -20,13 +20,9 @@
         <label for="password">Password:</label>
         <input type="password" name="password" required><br>
 
-        <label for="userType">User Type:</label>
-        <select name="userType">
-            <option value="Host">Host</option>
-            <option value="Traveler">Traveler</option>
-        </select><br>
-
-        <input type="submit" name="registerUser" value="Register">
+        <input type="submit" name="addAdmin" value="Add Admin">
+        <button type="button"
+            onclick="window.location.href='/eCommerce-Project/QuickStays/index.php?entity=admin&action=list'">Cancel</button>
     </form>
 </body>
 

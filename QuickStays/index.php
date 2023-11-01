@@ -1,24 +1,34 @@
-<html>
+<?php
+require_once 'db_connect.php';
 
-<head>
-    <title>Entity Choice</title>
-</head>
+// Autoload controllers
+spl_autoload_register(function ($class_name) {
+    include 'Controllers/' . $class_name . '.php';
+});
 
-<body>
-    <form method="GET" action="list_page.php">
-        <label for="entity">Select Entity:</label>
-        <select id="entity" name="entity">
-            <option value="user" <?php if (isset($_GET['entity']) && $_GET['entity'] === 'user')
-                echo 'selected'; ?>>User
-            </option>
-            <option value="property" <?php if (isset($_GET['entity']) && $_GET['entity'] === 'property')
-                echo 'selected'; ?>>Property</option>
-        </select>
-        <button type="submit">Submit</button>
-    </form>
-</body>
+// Ensure the entity is selected, default to 'User'
+$entity = isset($_GET['entity']) ? $_GET['entity'] : 'user';
 
-<a href="list_page.php?entity=user&action=login">Login</a>
-<a href="list_page.php?entity=user&action=register">Register</a>
+if ($entity === 'user' || $entity === 'property' || $entity === 'admin' || $entity === 'login') {
+    // Set the action based on the URL parameter, default to 'index'
+    $action = isset($_GET['action']) ? $_GET['action'] : 'index';
 
-</html>
+    // Generate the controller class name
+    $controller_class = ucfirst($entity) . 'Controller';
+
+    // Verify the existence of the controller class and execute the method if it is present
+    if (class_exists($controller_class)) {
+        $controller = new $controller_class();
+
+        if (method_exists($controller, $action)) {
+            $controller->$action();
+        } else {
+            echo "Invalid action.";
+        }
+    } else {
+        echo "Invalid entity.";
+    }
+} else {
+    echo "Invalid entity.";
+}
+?>

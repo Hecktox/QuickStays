@@ -8,7 +8,7 @@
 <body>
     <h1>Edit Property</h1>
     <!-- Display the property data for editing -->
-    <form method="POST" action="list_page.php?entity=property&action=edit">
+    <form method="POST" action="/eCommerce-Project/QuickStays/index.php?entity=property&action=edit">
         <input type="hidden" name="PropertyID" value="<?php echo $property['PropertyID']; ?>">
         <label for="PropertyName">Property Name:</label>
         <input type="text" name="PropertyName" value="<?php echo $property['PropertyName']; ?>" required><br>
@@ -51,7 +51,8 @@
         <input type="date" name="AvailabilityDate" value="<?php echo $property['AvailabilityDate']; ?>"><br>
 
         <input type="submit" name="saveProperty" value="Save">
-        <button type="button" onclick="window.location.href='list_page.php?entity=property&action=list'">Cancel</button>
+        <button type="button"
+            onclick="window.location.href='/eCommerce-Project/QuickStays/index.php?entity=property&action=list'">Cancel</button>
     </form>
 </body>
 
