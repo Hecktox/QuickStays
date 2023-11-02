@@ -9,10 +9,11 @@ VALUES
 -- Inserting into Users
 INSERT INTO Users (FirstName, LastName, Email, Password, UserType)
 VALUES 
-('Alice', 'Johnson', 'alice.johnson@email.com', 'password123', 'Host'),
-('Bob', 'Smith', 'bob.smith@email.com', 'password456', 'Traveler'),
-('Carol', 'Davis', 'carol.davis@email.com', 'pass789', 'Traveler'),
-('David', 'Wilson', 'david.wilson@email.com', 'pass101112', 'Host');
+('Alice', 'Johnson', 'alice.johnson@email.com', MD5('password123'), 'Host'),
+('Bob', 'Smith', 'bob.smith@email.com', MD5('password456'), 'Traveler'),
+('Carol', 'Davis', 'carol.davis@email.com', MD5('pass789'), 'Traveler'),
+('David', 'Wilson', 'david.wilson@email.com', MD5('pass101112'), 'Host');
+
 
 -- Inserting into Reviews
 INSERT INTO Reviews (PropertyID, UserID, Rating, Comment)
@@ -26,7 +27,7 @@ VALUES
 INSERT INTO Cart (UserID, PropertyID, BookingDate)
 VALUES 
 (2, 1, '2023-04-10'),
-(3, 2, '2023-04-15'),
+(3, 2, '2023-04-15'),   
 (2, 3, '2023-05-01'),
 (3, 4, '2023-05-05');
 
@@ -41,5 +42,5 @@ VALUES
 -- Inserting into Admins
 INSERT INTO Admins (FirstName, LastName, Email, Password)
 VALUES 
-('Emma', 'Thompson', 'emma.thompson@email.com', 'adminpass1'),
-('James', 'Miller', 'james.miller@email.com', 'adminpass2');
+('Emma', 'Thompson', 'emma.thompson@email.com', MD5('adminpass1')),
+('James', 'Miller', 'james.miller@email.com', MD5('adminpass2'));
