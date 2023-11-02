@@ -1,3 +1,10 @@
+<!--
+ E-Commerce 
+ Team Project
+ Maximus Taube
+ 2095310
+-->
+
 <!DOCTYPE html>
 <html>
 
@@ -11,10 +18,10 @@
     
     if (isset($_SESSION['user_email'])) {
         echo "<h1>Welcome to Your Dashboard, " . $_SESSION['user_email'] . "</h1>";
-        echo "<a href='/eCommerce-Project/QuickStays/index.php?entity=login&action=logout'>Logout</a>";
+        echo '<button onclick="window.location.href=\'/eCommerce-Project/QuickStays/index.php?entity=login&action=logout\';">Logout</button>';
     } else {
         echo "<p>Session not set. Please log in.</p>";
-        echo "<a href='/eCommerce-Project/QuickStays/index.php?entity=login&action=login'>Login</a>";
+        echo '<button onclick="window.location.href=\'/eCommerce-Project/QuickStays/index.php?entity=login&action=login\';">Login</button>';
     }
     ?>
 

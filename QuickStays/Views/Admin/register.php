@@ -1,3 +1,10 @@
+<!--
+ E-Commerce 
+ Team Project
+ Maximus Taube
+ 2095310
+-->
+
 <!DOCTYPE html>
 <html>
 
@@ -21,6 +28,7 @@
         <input type="password" name="password" required><br>
 
         <input type="submit" name="registerAdmin" value="Register">
+        <button onclick="window.location.href='/eCommerce-Project/QuickStays/Views/Admin/index.php';">Cancel</button>
     </form>
 </body>
 

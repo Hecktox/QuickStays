@@ -1,3 +1,10 @@
+<!--
+ E-Commerce 
+ Team Project
+ Maximus Taube
+ 2095310
+-->
+
 <!DOCTYPE html>
 <html>
 
@@ -27,6 +34,7 @@
         </select><br>
 
         <input type="submit" name="registerUser" value="Register">
+        <button onclick="window.location.href='/eCommerce-Project/QuickStays/Views/Login/index.php';">Cancel</button>
     </form>
 </body>
 

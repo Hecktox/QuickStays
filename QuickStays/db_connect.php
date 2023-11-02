@@ -1,3 +1,10 @@
+<!--
+ E-Commerce 
+ Team Project
+ Maximus Taube
+ 2095310
+-->
+
 <?php
 $host = 'localhost';
 $dbname = 'quickstays_db';

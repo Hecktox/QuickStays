@@ -1,3 +1,10 @@
+<!--
+ E-Commerce 
+ Team Project
+ Maximus Taube
+ 2095310
+-->
+
 <!DOCTYPE html>
 <html>
 
