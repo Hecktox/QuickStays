@@ -34,7 +34,7 @@
         </select><br>
 
         <input type="submit" name="registerUser" value="Register">
-        <button onclick="window.location.href='/eCommerce-Project/QuickStays/Views/Login/index.php';">Cancel</button>
+        <button onclick="window.location.href='/eCommerce-Project/QuickStays/index.php?entity=login&action=login'">Cancel</button>
     </form>
 </body>
 

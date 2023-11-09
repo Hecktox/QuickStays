@@ -26,6 +26,9 @@ if (isset($_SESSION['admin_email'])) {
     echo '<option value="user" ' . (isset($_GET['entity']) && $_GET['entity'] === 'user' ? 'selected' : '') . '>User</option>';
     echo '<option value="property" ' . (isset($_GET['entity']) && $_GET['entity'] === 'property' ? 'selected' : '') . '>Property</option>';
     echo '<option value="admin" ' . (isset($_GET['entity']) && $_GET['entity'] === 'admin' ? 'selected' : '') . '>Admin</option>';
+    echo '<option value="booking" ' . (isset($_GET['entity']) && $_GET['entity'] === 'booking' ? 'selected' : '') . '>Booking</option>';
+    echo '<option value="cart" ' . (isset($_GET['entity']) && $_GET['entity'] === 'cart' ? 'selected' : '') . '>Cart</option>';
+    echo '<option value="review" ' . (isset($_GET['entity']) && $_GET['entity'] === 'review' ? 'selected' : '') . '>Review</option>';
     echo '</select>';
     echo '<input type="hidden" name="action" value="list">';
     echo '<button type="submit">Submit</button>';

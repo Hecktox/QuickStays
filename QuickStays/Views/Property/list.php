@@ -5,6 +5,15 @@
  2095310
 -->
 
+<?php
+session_start();
+
+if (!isset($_SESSION['admin_email'])) {
+    header('Location: /eCommerce-Project/QuickStays/index.php?entity=user&action=index');
+    exit();
+}
+?>
+
 <!DOCTYPE html>
 <html>
 
@@ -14,7 +23,7 @@
 
 <body>
     <h1>Property List</h1>
-    <button onclick="window.location.href='/eCommerce-Project/QuickStays/Views/Admin/index.php';">Back to Entity
+    <button onclick="window.location.href='/eCommerce-Project/QuickStays/index.php?entity=admin&action=index'">Back to Entity
         Selection</button>
     <button onclick="window.location.href='/eCommerce-Project/QuickStays/index.php?entity=property&action=add'">Add
         Property</button>

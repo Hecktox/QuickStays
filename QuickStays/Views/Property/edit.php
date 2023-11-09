@@ -5,6 +5,15 @@
  2095310
 -->
 
+<?php
+session_start();
+
+if (!isset($_SESSION['admin_email'])) {
+    header('Location: /eCommerce-Project/QuickStays/index.php?entity=user&action=index');
+    exit();
+}
+?>
+
 <!DOCTYPE html>
 <html>
 

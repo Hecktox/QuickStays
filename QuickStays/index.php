@@ -16,7 +16,7 @@ spl_autoload_register(function ($class_name) {
 // Ensure the entity is selected, default to 'User'
 $entity = isset($_GET['entity']) ? $_GET['entity'] : 'user';
 
-if ($entity === 'user' || $entity === 'property' || $entity === 'admin' || $entity === 'login') {
+if ($entity === 'user' || $entity === 'property' || $entity === 'admin' || $entity === 'booking' || $entity === 'cart' || $entity === 'review' || $entity === 'login') {
     // Set the action based on the URL parameter, default to 'index'
     $action = isset($_GET['action']) ? $_GET['action'] : 'index';
 

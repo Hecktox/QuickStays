@@ -24,8 +24,9 @@
         <input type="submit" name="login" value="Login">
     </form>
     <button type="button"
-            onclick="window.location.href='/eCommerce-Project/QuickStays/index.php?entity=user&action=register'">Not a Member? Register Here</button>
-    <button onclick="window.location.href='/eCommerce-Project/QuickStays/Views/User/index.php';">Cancel</button>
+        onclick="window.location.href='/eCommerce-Project/QuickStays/index.php?entity=user&action=register'">Not a
+        Member? Register Here</button>
+    <button onclick="window.location.href='/eCommerce-Project/QuickStays'">Cancel</button>
 </body>
 
 </html>

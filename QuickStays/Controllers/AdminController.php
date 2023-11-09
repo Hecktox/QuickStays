@@ -10,6 +10,11 @@ require_once 'Models/AdminModel.php';
 
 class AdminController
 {
+    public function index()
+    {
+        include 'Views/Admin/index.php';
+    }
+
     public function list()
     {
         $adminModel = new AdminModel();

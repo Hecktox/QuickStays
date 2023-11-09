@@ -28,7 +28,7 @@
         <input type="password" name="password" required><br>
 
         <input type="submit" name="registerAdmin" value="Register">
-        <button onclick="window.location.href='/eCommerce-Project/QuickStays/Views/Admin/index.php';">Cancel</button>
+        <button onclick="window.location.href='/eCommerce-Project/QuickStays/index.php?entity=admin&action=index;">Cancel</button>
     </form>
 </body>
 

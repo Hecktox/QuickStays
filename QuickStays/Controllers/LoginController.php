@@ -29,7 +29,7 @@ class LoginController
                 $_SESSION['user_email'] = $user['Email'];
 
                 // Redirect to a user dashboard
-                header('Location: /eCommerce-Project/QuickStays/Views/User/index.php');
+                header('Location: /eCommerce-Project/QuickStays/index.php?entity=user&action=index');
                 exit();
             } elseif ($admin) {
                 // Start a session to manage admin authentication
@@ -40,7 +40,7 @@ class LoginController
                 $_SESSION['admin_email'] = $admin['Email'];
 
                 // Redirect to an admin dashboard
-                header('Location: /eCommerce-Project/QuickStays/Views/Admin/index.php');
+                header('Location: /eCommerce-Project/QuickStays/index.php?entity=admin&action=index');
                 exit();
             } else {
                 echo "<p>Invalid login credentials!</p>";
@@ -55,7 +55,7 @@ class LoginController
         session_start(); // Start the session
         session_destroy(); // Destroy the session data
 
-        header('Location: /eCommerce-Project/QuickStays/Views/User/index.php');
+        header('Location: /eCommerce-Project/QuickStays/index.php?entity=user&action=index');
         exit();
     }
 }
