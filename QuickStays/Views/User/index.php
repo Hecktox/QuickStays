@@ -49,7 +49,7 @@
         echo '    </ul>';
         echo '  </div>';
         echo '</nav>';
-        echo "<p>Session not set. Please log in.</p>";
+    
     }
     ?>
      <div class="jumbotron jumbotron-fluid">
