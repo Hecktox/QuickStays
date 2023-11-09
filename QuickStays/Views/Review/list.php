@@ -15,42 +15,50 @@ if (!isset($_SESSION['admin_email'])) {
 ?>
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
     <title>Review List</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
 </head>
 
-<body>
-    <h1>Review List</h1>
-    <button onclick="window.location.href='/eCommerce-Project/QuickStays/index.php?entity=admin&action=index'">Back to Entity
-        Selection</button>
-    <button onclick="window.location.href='/eCommerce-Project/QuickStays/index.php?entity=review&action=add'">Add
-        Review</button>
-    <table border="1">
-        <tr>
-            <th>Review ID</th>
-            <th>Property ID</th>
-            <th>User ID</th>
-            <th>Rating</th>
-            <th>Comment</th>
-            <th>Edit</th>
-            <th>Delete</th>
-        </tr>
-        <?php
-        foreach ($reviews as $review) {
-            echo "<tr>";
-            echo "<td>{$review['ReviewID']}</td>";
-            echo "<td>{$review['PropertyID']}</td>";
-            echo "<td>{$review['UserID']}</td>";
-            echo "<td>{$review['Rating']}</td>";
-            echo "<td>{$review['Comment']}</td>";
-            echo "<td><button onclick='editReview({$review['ReviewID']})'>Edit</button></td>";
-            echo "<td><button onclick='confirmDelete({$review['ReviewID']})'>Delete</button></td>";
-            echo "</tr>";
-        }
-        ?>
-    </table>
+<body class="bg-light">
+    <div class="container py-5">
+        <h1 class="display-4 mb-4">Review List</h1>
+        <a href='/eCommerce-Project/QuickStays/index.php?entity=admin&action=index' class="btn btn-secondary mb-2">Back to Entity Selection</a>
+        <a href='/eCommerce-Project/QuickStays/index.php?entity=review&action=add' class="btn btn-primary mb-2">Add Review</a>
+
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Review ID</th>
+                    <th>Property ID</th>
+                    <th>User ID</th>
+                    <th>Rating</th>
+                    <th>Comment</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php
+                foreach ($reviews as $review) {
+                    echo "<tr>";
+                    echo "<td>{$review['ReviewID']}</td>";
+                    echo "<td>{$review['PropertyID']}</td>";
+                    echo "<td>{$review['UserID']}</td>";
+                    echo "<td>{$review['Rating']}</td>";
+                    echo "<td>{$review['Comment']}</td>";
+                    echo "<td><button onclick='editReview({$review['ReviewID']})' class='btn btn-warning btn-sm'>Edit</button></td>";
+                    echo "<td><button onclick='confirmDelete({$review['ReviewID']})' class='btn btn-danger btn-sm'>Delete</button></td>";
+                    echo "</tr>";
+                }
+                ?>
+            </tbody>
+        </table>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
     <script>
         function confirmDelete(reviewID) {
