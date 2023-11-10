@@ -44,8 +44,9 @@
             padding-right: 0px;
 
             background-color: rgba(255, 255, 255, 0.8);
-            
-             height: 180px;
+            width: 40%;
+            height: 180px;
+            left: 0;
         }
         
     </style>
