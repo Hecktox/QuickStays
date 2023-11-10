@@ -45,6 +45,24 @@
             height: 180px;
             left: 0;
         }
+
+        .service-icon {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            max-height: 100px;
+        }
+
+        .service-box {
+            text-align: center;
+            padding: 30px;
+            transition: transform 0.3s;
+        }
+
+        .service-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
     </style>
 </head>
 
@@ -163,31 +181,53 @@
             </a>
         </div>
     </div>
+    <!-- Services -->
     <div class="container mt-5">
         <div class="row">
             <div class="col-md-4">
                 <div class="service-box">
-
+                    <img src="/eCommerce-Project/QuickStays/images/dollar.png" alt="Best Prices"
+                        class="service-icon img-fluid">
                     <h3>Best Prices</h3>
                     <p>Find the best deals for your stay.</p>
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="service-box">
-
+                    <img src="/eCommerce-Project/QuickStays/images/support.png" alt="Best Prices"
+                        class="service-icon img-fluid">
                     <h3>24/7 Support</h3>
                     <p>Always there for you, any time, any place.</p>
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="service-box">
-
+                    <img src="/eCommerce-Project/QuickStays/images/happy.png" alt="Best Prices"
+                        class="service-icon img-fluid">
                     <h3>Unique Experiences</h3>
                     <p>Stay in unique homes across the world.</p>
                 </div>
             </div>
         </div>
     </div>
+
+    <!-- Call to Action Section -->
+    <div class="container mt-4">
+        <div class="row">
+        <div class="col-12"> 
+            <div class="cta-section d-flex align-items-center justify-content-center"
+                style="background: url('/eCommerce-Project/QuickStays/images/home.webp') no-repeat center center; background-size: cover; height: 400px;">
+                <div class="text-center text-white" style="background: rgba(0, 0, 0, 0.5); padding: 20px;">
+                    <h2>List your property on QuickStays and open your door to rental income</h2>
+                    <p class="my-3">Earn money by renting out your vacation home, unused apartment, or extra room.</p>
+                    <a href="/eCommerce-Project/QuickStays/index.php?entity=user&action=register" class="btn btn-primary">Become A Host</a>
+                </div>
+        </div>
+            
+        </div>
+    </div>
+
+
     <div class="container mt-5">
         <h2 class="text-center mb-4">Happy Guests</h2>
         <div class="row">
