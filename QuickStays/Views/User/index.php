@@ -48,7 +48,6 @@
             height: 180px;
             left: 0;
         }
-        
     </style>
 </head>
 
@@ -89,13 +88,15 @@
     <div class="jumbotron jumbotron-fluid">
         <div class="container">
             <h1 class="display-4">Find your perfect getaway</h1>
-            <form class="form-inline">
-                <input class="form-control mr-sm-2" type="search" placeholder="Destination" aria-label="Destination">
-                <input class="form-control mr-sm-2" type="date" placeholder="Date" aria-label="Date">
-                <input class="form-control mr-sm-2" type="number" placeholder="# of Guests"
+            <form class="form-inline" method="POST" action="search_properties.php">
+                <input class="form-control mr-sm-2" type="search" name="destination" placeholder="Destination"
+                    aria-label="Destination">
+                <input class="form-control mr-sm-2" type="date" name="date" placeholder="Date" aria-label="Date">
+                <input class="form-control mr-sm-2" type="number" name="guests" placeholder="# of Guests"
                     aria-label="Number of Guests">
                 <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
             </form>
+
         </div>
     </div>
 
