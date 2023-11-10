@@ -50,8 +50,9 @@ class PropertyModel
     public function searchProperties($destination, $date, $guests)
     {
         global $db;
-        $query = $db->prepare("SELECT * FROM Properties WHERE Country = ? AND AvailabilityDate >= ? AND NumRooms >= ?");
-        $query->execute([$destination, $date, $guests]);
+        $query = $db->prepare("SELECT * FROM Properties WHERE (City = ? OR Country = ?) AND AvailabilityDate >= ? AND NumRooms >= ?");
+        $query->execute([$destination, $destination, $date, $guests]);
+
         return $query->fetchAll(PDO::FETCH_ASSOC);
     }
 }
