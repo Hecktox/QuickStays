@@ -57,7 +57,7 @@
         echo '      <li class="nav-item">';
         echo '        <a class="nav-link" href="/eCommerce-Project/QuickStays/index.php?entity=login&action=login">Login</a>';
         echo '      </li>';
-        echo '    </ul>';
+        echo '    </ul>';   
         echo '  </div>';
         echo '</nav>';
     }
