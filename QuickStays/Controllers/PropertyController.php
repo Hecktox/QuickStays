@@ -108,5 +108,23 @@ class PropertyController
             echo "<p>Invalid property ID!</p>";
         }
     }
+
+    public function search()
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['search'])) {
+            $destination = $_POST['destination'];
+            $date = $_POST['date'];
+            $guests = $_POST['guests'];
+
+            $propertyModel = new PropertyModel();
+
+            $searchResults = $propertyModel->searchProperties($destination, $date, $guests);
+
+            include 'Views/Property/index.php';
+        } else {
+            header('Location: /eCommerce-Project/QuickStays/index.php?entity=property&action=list');
+            exit();
+        }
+    }
 }
 ?>

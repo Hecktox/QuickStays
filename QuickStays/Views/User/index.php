@@ -50,7 +50,7 @@
 
 <body>
     <?php
-    session_start(); 
+    session_start();
     // Check if the user is logged in
     if (isset($_SESSION['user_email'])) {
         echo '<nav class="navbar navbar-expand-lg navbar-light bg-light">';
@@ -83,18 +83,17 @@
     <div class="jumbotron jumbotron-fluid">
         <div class="container">
             <h1 class="display-4">Find your perfect getaway</h1>
-            <form class="form-inline" method="POST" action="search_properties.php">
+            <form class="form-inline" method="POST"
+                action="/eCommerce-Project/QuickStays/index.php?entity=property&action=search">
                 <input class="form-control mr-sm-2" type="search" name="destination" placeholder="Destination"
                     aria-label="Destination">
                 <input class="form-control mr-sm-2" type="date" name="date" placeholder="Date" aria-label="Date">
                 <input class="form-control mr-sm-2" type="number" name="guests" placeholder="# of Guests"
                     aria-label="Number of Guests">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit" name="search">Search</button>
             </form>
-
         </div>
     </div>
-
 
     <div class="container">
         <h2>Find spaces that suit your style</h2>
@@ -196,7 +195,8 @@
             <div class="col-md-4">
                 <div class="card">
                     <div class="card-body">
-                        <p class="card-text">"This was the perfect place for our weekend getaway. Quickstays made everything very easy for us!  "</p>
+                        <p class="card-text">"This was the perfect place for our weekend getaway. Quickstays made
+                            everything very easy for us! "</p>
                         <footer class="blockquote-footer">John Snow</footer>
                     </div>
                 </div>
