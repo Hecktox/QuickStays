@@ -12,6 +12,8 @@ class LoginController
 {
     public function login()
     {
+        $errorMessage = ''; // Initialize an empty error message
+
         if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login'])) {
             $email = $_POST['email'];
             $password = $_POST['password'];
@@ -21,43 +23,33 @@ class LoginController
             $admin = $loginModel->loginAdmin($email, $password);
 
             if ($user) {
-                // Start a session to manage user authentication
                 session_start();
-
-                // Store user information in a session variable
                 $_SESSION['user_id'] = $user['UserID'];
                 $_SESSION['user_email'] = $user['Email'];
-
-                // Redirect to a user dashboard
                 header('Location: /eCommerce-Project/QuickStays/index.php?entity=user&action=index');
                 exit();
             } elseif ($admin) {
-                // Start a session to manage admin authentication
                 session_start();
-
-                // Store admin information in a session variable
                 $_SESSION['admin_id'] = $admin['AdminID'];
                 $_SESSION['admin_email'] = $admin['Email'];
-
-                // Redirect to an admin dashboard
                 header('Location: /eCommerce-Project/QuickStays/index.php?entity=admin&action=index');
                 exit();
             } else {
-                echo "<p>Invalid login credentials!</p>";
+                // Invalid login credentials, set the error message
+                $errorMessage = 'Invalid login credentials!';
             }
-        } else {
-            include 'Views/Login/index.php';
         }
+
+        include 'Views/Login/index.php';
     }
 
     public function logout()
     {
-        session_start(); // Start the session
-        session_destroy(); // Destroy the session data
-
+        session_start();
+        session_destroy();
         header('Location: /eCommerce-Project/QuickStays/index.php?entity=user&action=index');
         exit();
     }
 }
-
 ?>
+
