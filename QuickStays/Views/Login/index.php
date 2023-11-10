@@ -69,6 +69,14 @@
             <div class="col-sm-8 col-md-6 col-lg-4 mx-auto">
                 <div class="gradient-form text-center p-4">
                     <h1 class="mb-4">Login</h1>
+
+                    <!-- Display error message if present -->
+                    <?php if (!empty($errorMessage)): ?>
+                        <p class="text-danger">
+                            <?php echo $errorMessage; ?>
+                        </p>
+                    <?php endif; ?>
+
                     <form method="POST" action="/eCommerce-Project/QuickStays/index.php?entity=login&action=login">
                         <div class="form-group">
                             <input type="email" class="form-control" name="email" placeholder="Email" required>
@@ -80,6 +88,7 @@
 
                         <button type="submit" class="btn btn-primary btn-block rounded-pill" name="login">Login</button>
                     </form>
+
                     <p class="mt-3">
                         <a href="/eCommerce-Project/QuickStays/index.php?entity=user&action=register"
                             class="register-link">Not a Member? Register Here</a>
