@@ -54,7 +54,7 @@
     // Check if the user is logged in
     if (isset($_SESSION['user_email'])) {
         echo '<nav class="navbar navbar-expand-lg navbar-light bg-light">';
-        echo '  <a class="navbar-brand" href="#">QuickStays</a>';
+        echo '  <a class="navbar-brand" href="/eCommerce-Project/QuickStays/Views/User/index.php">QuickStays</a>';
         echo '  <div class="collapse navbar-collapse" id="navbarNav">';
         echo '    <ul class="navbar-nav ml-auto">';
         echo '      <li class="nav-item">';
@@ -69,7 +69,7 @@
     } else {
         // User is not logged in, show the Login link
         echo '<nav class="navbar navbar-expand-lg navbar-light bg-light">';
-        echo '  <a class="navbar-brand" href="#">QuickStays</a>';
+        echo '  <a class="navbar-brand" href="/eCommerce-Project/QuickStays/Views/User/index.php">QuickStays</a>';
         echo '  <div class="collapse navbar-collapse" id="navbarNav">';
         echo '    <ul class="navbar-nav ml-auto">';
         echo '      <li class="nav-item">';

@@ -24,7 +24,7 @@
         session_start();
         // Header with conditional user display
         echo '<nav class="navbar navbar-expand-lg navbar-light bg-light">';
-        echo '  <a class="navbar-brand" href="#">QuickStays</a>';
+        echo '  <a class="navbar-brand" href="/eCommerce-Project/QuickStays/Views/User/index.php">QuickStays</a>';
         echo '  <div class="collapse navbar-collapse" id="navbarNav">';
         echo '    <ul class="navbar-nav ml-auto">';
         if (isset($_SESSION['admin_email'])) {

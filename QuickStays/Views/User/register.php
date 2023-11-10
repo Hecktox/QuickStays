@@ -19,10 +19,8 @@
             color: #ffff;
             margin: 0;
             padding: 0;
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            height: 90vh;
+
         }
 
         .gradient-form {
@@ -64,6 +62,37 @@
 </head>
 
 <body>
+<?php
+    session_start();
+    // Check if the user is logged in
+    if (isset($_SESSION['user_email'])) {
+        echo '<nav class="navbar navbar-expand-lg navbar-light bg-light">';
+        echo '  <a class="navbar-brand" href="/eCommerce-Project/QuickStays/Views/User/index.php">QuickStays</a>';
+        echo '  <div class="collapse navbar-collapse" id="navbarNav">';
+        echo '    <ul class="navbar-nav ml-auto">';
+        echo '      <li class="nav-item">';
+        echo '        <a class="nav-link" href="#">' . htmlspecialchars($_SESSION['user_email']) . '</a>';
+        echo '      </li>';
+        echo '      <li class="nav-item">';
+        echo '        <a class="nav-link" href="/eCommerce-Project/QuickStays/index.php?entity=login&action=logout">Logout</a>';
+        echo '      </li>';
+        echo '    </ul>';
+        echo '  </div>';
+        echo '</nav>';
+    } else {
+        // User is not logged in, show the Login link
+        echo '<nav class="navbar navbar-expand-lg navbar-light bg-light">';
+        echo '  <a class="navbar-brand" href="/eCommerce-Project/QuickStays/Views/User/index.php">QuickStays</a>';
+        echo '  <div class="collapse navbar-collapse" id="navbarNav">';
+        echo '    <ul class="navbar-nav ml-auto">';
+        echo '      <li class="nav-item">';
+        echo '        <a class="nav-link" href="/eCommerce-Project/QuickStays/index.php?entity=login&action=login">Login</a>';
+        echo '      </li>';
+        echo '    </ul>';
+        echo '  </div>';
+        echo '</nav>';
+    }
+?>
     <div class="container h-100">
         <div class="row align-items-center h-100">
             <div class="col-sm-8 col-md-6 col-lg-4 mx-auto">
