@@ -34,11 +34,22 @@
     
     // Check if the user is logged in
     if (isset($_SESSION['user_email'])) {
-        echo "<h1>Welcome to Your Dashboard, " . $_SESSION['user_email'] . "</h1>";
-        // Logout button (handled inline for simplicity)
-        echo '<button onclick="window.location.href=\'/eCommerce-Project/QuickStays/index.php?entity=login&action=logout\';" class="btn btn-primary">Logout</button>';
+        // Logged in user's email is in the session, display it
+        echo '<nav class="navbar navbar-expand-lg navbar-light bg-light">';
+        echo '  <a class="navbar-brand" href="#">QuickStays</a>';
+        echo '  <div class="collapse navbar-collapse" id="navbarNav">';
+        echo '    <ul class="navbar-nav ml-auto">';
+        echo '      <li class="nav-item">';
+        echo '        <a class="nav-link" href="#">' . htmlspecialchars($_SESSION['user_email']) . '</a>';
+        echo '      </li>';
+        echo '      <li class="nav-item">';
+        echo '        <a class="nav-link" href="/eCommerce-Project/QuickStays/index.php?entity=login&action=logout">Logout</a>';
+        echo '      </li>';
+        echo '    </ul>';
+        echo '  </div>';
+        echo '</nav>';
     } else {
-        // Create a Bootstrap navigation bar with a login link
+        // User is not logged in, show the Login link
         echo '<nav class="navbar navbar-expand-lg navbar-light bg-light">';
         echo '  <a class="navbar-brand" href="#">QuickStays</a>';
         echo '  <div class="collapse navbar-collapse" id="navbarNav">';
@@ -49,7 +60,6 @@
         echo '    </ul>';
         echo '  </div>';
         echo '</nav>';
-    
     }
     ?>
      <div class="jumbotron jumbotron-fluid">
