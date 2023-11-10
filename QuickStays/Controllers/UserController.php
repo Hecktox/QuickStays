@@ -125,5 +125,8 @@ class UserController
             include 'Views/User/register.php';
         }
     }
+    public function faq(){
+        include 'Views/User/faq.php';
+    }
 }
 ?>
