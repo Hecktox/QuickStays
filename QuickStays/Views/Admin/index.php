@@ -3,6 +3,8 @@
  Team Project
  Maximus Taube
  2095310
+ Philippe Ton-That
+ 2033640
 -->
 
 <!DOCTYPE html>
@@ -10,9 +12,7 @@
 
 <head>
     <title>Entity Choice</title>
-    <!-- Include Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <!-- Optional: Include Bootstrap JavaScript and its dependencies if you need interactive components -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.9.5/umd.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
@@ -29,7 +29,7 @@ if (isset($_SESSION['admin_email'])) {
     echo '    <ul class="navbar-nav ml-auto">';
     echo '      <li class="nav-item dropdown">';
     echo '        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">';
-    echo '          ' . htmlspecialchars($_SESSION['admin_email']) . ''; // Changed from user_email to admin_email
+    echo '          ' . htmlspecialchars($_SESSION['admin_email']) . ''; 
     echo '        </a>';
     echo '        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">';
     echo '          <a class="dropdown-item" href="/eCommerce-Project/QuickStays/index.php?entity=login&action=logout">Log out</a>';
@@ -87,7 +87,7 @@ if (isset($_SESSION['admin_email'])) {
             echo 'Session not set. Please log in.';
             echo '</div>';
             echo '<a href="/eCommerce-Project/QuickStays/index.php?entity=login&action=login" class="btn btn-primary">Login</a>';
-            echo '</div>'; // Close container
+            echo '</div>'; 
         }
         ?>
     </div>
