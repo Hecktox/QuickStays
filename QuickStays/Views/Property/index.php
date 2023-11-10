@@ -16,6 +16,38 @@
 </head>
 
 <body>
+ <?php
+    session_start();
+    // Check if the user is logged in
+    if (isset($_SESSION['user_email'])) {
+        echo '<nav class="navbar navbar-expand-lg navbar-light bg-light">';
+        echo '  <a class="navbar-brand" href="#">QuickStays</a>';
+        echo '  <div class="collapse navbar-collapse" id="navbarNav">';
+        echo '    <ul class="navbar-nav ml-auto">';
+        echo '      <li class="nav-item">';
+        echo '        <a class="nav-link" href="#">' . htmlspecialchars($_SESSION['user_email']) . '</a>';
+        echo '      </li>';
+        echo '      <li class="nav-item">';
+        echo '        <a class="nav-link" href="/eCommerce-Project/QuickStays/index.php?entity=login&action=logout">Logout</a>';
+        echo '      </li>';
+        echo '    </ul>';
+        echo '  </div>';
+        echo '</nav>';
+    } else {
+        // User is not logged in, show the Login link
+        echo '<nav class="navbar navbar-expand-lg navbar-light bg-light">';
+        echo '  <a class="navbar-brand" href="#">QuickStays</a>';
+        echo '  <div class="collapse navbar-collapse" id="navbarNav">';
+        echo '    <ul class="navbar-nav ml-auto">';
+        echo '      <li class="nav-item">';
+        echo '        <a class="nav-link" href="/eCommerce-Project/QuickStays/index.php?entity=login&action=login">Login</a>';
+        echo '      </li>';
+        echo '    </ul>';
+        echo '  </div>';
+        echo '</nav>';
+    }
+    ?>
+    
     <div class="container my-4">
         <h2 class="text-center mb-4">Search Results</h2>
 
