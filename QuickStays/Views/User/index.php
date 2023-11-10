@@ -197,7 +197,7 @@
                 <div class="card">
                     <div class="card-body">
                         <p class="card-text">"This was the perfect place for our weekend getaway. Quickstays made everything very easy for us!  "</p>
-                        <footer class="blockquote-footer">Jane Doe</footer>
+                        <footer class="blockquote-footer">John Snow</footer>
                     </div>
                 </div>
             </div>
@@ -207,7 +207,7 @@
                     <div class="card-body">
                         <p class="card-text">"Amazing experience from start to finish. The booking process was easy and
                             the stay exceeded our expectations."</p>
-                        <footer class="blockquote-footer">John Smith</footer>
+                        <footer class="blockquote-footer">Edward Scissorhands</footer>
                     </div>
                 </div>
             </div>
