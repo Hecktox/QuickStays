@@ -6,49 +6,92 @@
 -->
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Login</title>
-    <!-- Include Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <!-- Include Bootstrap JavaScript and its dependencies -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.9.5/umd.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background: linear-gradient(to right, #fac534, #f58c22);
+            color: #ffff;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .gradient-form {
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        .btn-primary {
+            background-color: #ffffff;
+            border-color: #ffffff;
+            color: #fac534;
+        }
+
+        .btn-primary:hover {
+            background-color: #f58c22;
+            border-color: #f58c22;
+            color: #ffff;
+        }
+
+        .register-link {
+            color: #ffffff !important;
+            transition: color 0.3s ease-in-out;
+        }
+
+        .register-link:hover {
+            color: #f58c22 !important;
+            text-decoration: none;
+        }
+
+        .form-control {
+            border-radius: 20px;
+            color: #fac534;
+        }
+
+        .form-control::placeholder {
+            color: #fac534;
+        }
+    </style>
 </head>
 
 <body>
-    <!-- Bootstrap Navigation Bar -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#">QuickStays</a>
-        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-            <div class="navbar-nav">
-                <a class="nav-item nav-link active" href="#">Login <span class="sr-only">(current)</span></a>
+    <div class="container h-100">
+        <div class="row align-items-center h-100">
+            <div class="col-sm-8 col-md-6 col-lg-4 mx-auto">
+                <div class="gradient-form text-center p-4">
+                    <h1 class="mb-4">Login</h1>
+                    <form method="POST" action="/eCommerce-Project/QuickStays/index.php?entity=login&action=login">
+                        <div class="form-group">
+                            <input type="email" class="form-control" name="email" placeholder="Email" required>
+                        </div>
+
+                        <div class="form-group">
+                            <input type="password" class="form-control" name="password" placeholder="Password" required>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary btn-block rounded-pill" name="login">Login</button>
+                    </form>
+                    <p class="mt-3">
+                        <a href="/eCommerce-Project/QuickStays/index.php?entity=user&action=register"
+                            class="register-link">Not a Member? Register Here</a>
+                    </p>
+                </div>
             </div>
         </div>
-    </nav>
-
-    <div class="container mt-4">
-        <h1 class="mb-3">Login</h1>
-        <form method="POST" action="/eCommerce-Project/QuickStays/index.php?entity=login&action=login">
-            <div class="form-group">
-                <label for="email">Email:</label>
-                <input type="email" class="form-control" name="email" required>
-            </div>
-
-            <div class="form-group">
-                <label for="password">Password:</label>
-                <input type="password" class="form-control" name="password" required>
-            </div>
-
-            <button type="submit" class="btn btn-primary" name="login">Login</button>
-        </form>
-        <button type="button" class="btn btn-link"
-            onclick="window.location.href='/eCommerce-Project/QuickStays/index.php?entity=user&action=register'">Not a
-            Member? Register Here</button>
-        <button class="btn btn-secondary" onclick="window.location.href='/eCommerce-Project/QuickStays'">Cancel</button>
     </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 
 </html>
