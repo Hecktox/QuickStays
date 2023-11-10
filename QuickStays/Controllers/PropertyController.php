@@ -126,5 +126,22 @@ class PropertyController
             exit();
         }
     }
+
+    public function book()
+    {
+        if (isset($_GET['PropertyID'])) {
+            $propertyID = $_GET['PropertyID'];
+            $propertyModel = new PropertyModel();
+            $property = $propertyModel->getPropertyByID($propertyID);
+
+            if ($property) {
+                include 'Views/Property/book.php';
+            } else {
+                echo "<p>Property not found!</p>";
+            }
+        } else {
+            echo "<p>Invalid property ID!</p>";
+        }
+    }
 }
 ?>

@@ -47,13 +47,13 @@
         echo '  </div>';
         echo '</nav>';
     }
-?>
+    ?>
 
-    
+
     <div class="container my-4">
         <h2 class="text-center mb-4">Search Results</h2>
 
-        <?php if (!empty($searchResults)) : ?>
+        <?php if (!empty($searchResults)): ?>
             <div class="table-responsive">
                 <table class="table table-striped">
                     <thead class="thead-dark">
@@ -65,18 +65,27 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <?php foreach ($searchResults as $property) : ?>
+                        <?php foreach ($searchResults as $property): ?>
                             <tr>
-                                <td><?php echo $property['PropertyID']; ?></td>
-                                <td><?php echo $property['PropertyName']; ?></td>
-                                <td><?php echo $property['Country']; ?></td>
-                                <td><?php echo $property['City']; ?></td>
+                                <td>
+                                    <?php echo $property['PropertyID']; ?>
+                                </td>
+                                <td><a
+                                        href="/eCommerce-Project/QuickStays/index.php?entity=property&action=book&PropertyID=<?php echo $property['PropertyID']; ?>">
+                                        <?php echo $property['PropertyName']; ?>
+                                    </a></td>
+                                <td>
+                                    <?php echo $property['Country']; ?>
+                                </td>
+                                <td>
+                                    <?php echo $property['City']; ?>
+                                </td>
                             </tr>
                         <?php endforeach; ?>
                     </tbody>
                 </table>
             </div>
-        <?php else : ?>
+        <?php else: ?>
             <div class="alert alert-warning" role="alert">
                 No properties found matching the search criteria.
             </div>
