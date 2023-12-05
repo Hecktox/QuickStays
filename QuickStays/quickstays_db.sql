@@ -20,7 +20,8 @@ CREATE TABLE Properties (
     PropertyType ENUM('House', 'Apartment', 'Condo', 'Duplex'),
     NumRooms INT,
     NumBathrooms INT,
-    AvailabilityDate DATE
+    AvailabilityDate DATE,
+    PricePerNight DECIMAL(10, 2)
 );
 
 CREATE TABLE Users (
@@ -73,34 +74,34 @@ CREATE TABLE Admins (
 );
 
 -- Sample Data
-INSERT INTO Properties (PropertyName, Country, City, Province, StreetAddress, Description, PropertyType, NumRooms, NumBathrooms, AvailabilityDate)
+INSERT INTO Properties (PropertyName, Country, City, Province, StreetAddress, Description, PropertyType, NumRooms, NumBathrooms, AvailabilityDate, PricePerNight)
 VALUES
-    ('Cozy Cottage', 'United States', 'New York', 'New York', '123 Main St', 'A charming cottage in the heart of the city', 'House', 2, 1, '2023-11-15'),
-    ('Luxury Apartment', 'United States', 'Los Angeles', 'California', '456 Elm St', 'A modern and spacious apartment', 'Apartment', 3, 2, '2023-11-20'),
-    ('Beachfront Villa', 'United States', 'Miami', 'Florida', '789 Ocean Ave', 'An exquisite villa right on the beach', 'House', 4, 3, '2023-11-25'),
-    ('Mountain Cabin', 'United States', 'Denver', 'Colorado', '101 Forest Rd', 'A cozy cabin in the woods with a great view', 'Cabin', 2, 1, '2023-12-01'),
-    ('Downtown Loft', 'United States', 'Chicago', 'Illinois', '567 Main St', 'A stylish loft in the heart of downtown', 'Apartment', 1, 1, '2023-12-05'),
-    ('Rustic Farmhouse', 'United States', 'Austin', 'Texas', '890 Farm Rd', 'A serene farmhouse with a large backyard', 'House', 3, 2, '2023-12-10'),
-    ('Ocean View Condo', 'United States', 'Miami', 'Florida', '200 Beach Dr', 'A luxurious condo with a view of the ocean', 'Condo', 2, 2, '2023-12-15'),
-    ('Ski Chalet', 'United States', 'Aspen', 'Colorado', '300 Mountain Rd', 'A charming chalet for winter getaways', 'Chalet', 4, 3, '2023-12-20'),
-    ('City Penthouse', 'United States', 'New York', 'New York', '100 Skyscraper Ave', 'An elegant penthouse in the heart of the city', 'Penthouse', 3, 2, '2023-12-25'),
-    ('Secluded Cabin', 'United States', 'Lake Tahoe', 'California', '400 Pine Rd', 'A cozy cabin nestled in the woods', 'Cabin', 2, 1, '2023-12-30'),
-    ('Historic Mansion', 'United States', 'Charleston', 'South Carolina', '500 Heritage St', 'A historic mansion with classic architecture', 'Mansion', 5, 4, '2024-01-05'),
-    ('Lakefront Cottage', 'United States', 'Seattle', 'Washington', '600 Lakefront Ln', 'A charming cottage by the lake', 'House', 2, 1, '2024-01-10'),
-    ('Modern Loft', 'United States', 'San Francisco', 'California', '700 Loft St', 'A sleek and modern loft with city views', 'Apartment', 2, 2, '2024-01-15'),
-    ('Desert Retreat', 'United States', 'Sedona', 'Arizona', '800 Desert Rd', 'A tranquil desert retreat with stunning sunsets', 'House', 3, 2, '2024-01-20'),
-    ('Lakeside Villa', 'United States', 'Lake Placid', 'New York', '900 Lakeside Dr', 'A luxurious villa with lakefront access', 'Villa', 4, 3, '2024-01-25'),
-    ('Mountain View Lodge', 'United States', 'Vail', 'Colorado', '1000 Lodge Rd', 'A spacious lodge with mountain vistas', 'Lodge', 6, 4, '2024-01-30'),
-    ('Seaside Bungalow', 'United States', 'Malibu', 'California', '1001 Ocean Dr', 'A cozy bungalow with a view of the ocean', 'Bungalow', 2, 1, '2024-04-15'),
-    ('Charming Cabin', 'United States', 'Aspen', 'Colorado', '2001 Cabin Rd', 'A rustic cabin for a mountain escape', 'Cabin', 2, 1, '2024-04-20'),
-    ('Luxury Penthouse', 'United States', 'Miami', 'Florida', '3001 Skyline Ave', 'A luxurious penthouse with city and ocean views', 'Penthouse', 3, 2, '2024-04-25'),
-    ('Riverside Cottage', 'United States', 'Portland', 'Oregon', '4001 River Rd', 'A peaceful cottage by the river', 'House', 2, 1, '2024-04-30'),
-    ('Classic Tudor', 'United States', 'Boston', 'Massachusetts', '5001 Tudor Ln', 'A classic Tudor-style home with vintage charm', 'House', 4, 3, '2024-05-05'),
-    ('Ski Lodge', 'United States', 'Jackson Hole', 'Wyoming', '6001 Ski Lodge Rd', 'A cozy lodge for winter adventures', 'Lodge', 5, 3, '2024-05-10'),
-    ('Beachfront Condo', 'United States', 'San Diego', 'California', '7001 Beach Dr', 'A modern condo with direct beach access', 'Condo', 2, 2, '2024-05-15'),
-    ('Hillside Retreat', 'United States', 'Santa Fe', 'New Mexico', '8001 Hill Rd', 'A serene hillside retreat with panoramic views', 'House', 3, 2, '2024-05-20'),
-    ('Vineyard Villa', 'United States', 'Napa Valley', 'California', '9001 Vineyard Ln', 'A villa surrounded by vineyards and wineries', 'Villa', 4, 4, '2024-05-25'),
-    ('Rustic Cabin', 'United States', 'Lake Tahoe', 'California', '10001 Forest Rd', 'A charming cabin for a cozy getaway', 'Cabin', 1, 1, '2024-05-30');
+    ('Cozy Cottage', 'United States', 'New York', 'New York', '123 Main St', 'A charming cottage in the heart of the city', 'House', 2, 1, '2023-11-15', 129.99),
+    ('Luxury Apartment', 'United States', 'Los Angeles', 'California', '456 Elm St', 'A modern and spacious apartment', 'Apartment', 3, 2, '2023-11-20', 150.50),
+    ('Beachfront Villa', 'United States', 'Miami', 'Florida', '789 Ocean Ave', 'An exquisite villa right on the beach', 'House', 4, 3, '2023-11-25', 100.99),
+    ('Mountain Cabin', 'United States', 'Denver', 'Colorado', '101 Forest Rd', 'A cozy cabin in the woods with a great view', 'Cabin', 2, 1, '2023-12-01', 79.50),
+    ('Downtown Loft', 'United States', 'Chicago', 'Illinois', '567 Main St', 'A stylish loft in the heart of downtown', 'Apartment', 1, 1, '2023-12-05', 98.99),
+    ('Rustic Farmhouse', 'United States', 'Austin', 'Texas', '890 Farm Rd', 'A serene farmhouse with a large backyard', 'House', 3, 2, '2023-12-10', 129.99),
+    ('Ocean View Condo', 'United States', 'Miami', 'Florida', '200 Beach Dr', 'A luxurious condo with a view of the ocean', 'Condo', 2, 2, '2023-12-15', 150.99),
+    ('Ski Chalet', 'United States', 'Aspen', 'Colorado', '300 Mountain Rd', 'A charming chalet for winter getaways', 'Chalet', 4, 3, '2023-12-20', 77.99),
+    ('City Penthouse', 'United States', 'New York', 'New York', '100 Skyscraper Ave', 'An elegant penthouse in the heart of the city', 'Penthouse', 3, 2, '2023-12-25', 120.80),
+    ('Secluded Cabin', 'United States', 'Lake Tahoe', 'California', '400 Pine Rd', 'A cozy cabin nestled in the woods', 'Cabin', 2, 1, '2023-12-30', 150.99),
+    ('Historic Mansion', 'United States', 'Charleston', 'South Carolina', '500 Heritage St', 'A historic mansion with classic architecture', 'Mansion', 5, 4, '2024-01-05', 569.99),
+    ('Lakefront Cottage', 'United States', 'Seattle', 'Washington', '600 Lakefront Ln', 'A charming cottage by the lake', 'House', 2, 1, '2024-01-10', 134.99),
+    ('Modern Loft', 'United States', 'San Francisco', 'California', '700 Loft St', 'A sleek and modern loft with city views', 'Apartment', 2, 2, '2024-01-15', 206.78),
+    ('Desert Retreat', 'United States', 'Sedona', 'Arizona', '800 Desert Rd', 'A tranquil desert retreat with stunning sunsets', 'House', 3, 2, '2024-01-20', 71.99),
+    ('Lakeside Villa', 'United States', 'Lake Placid', 'New York', '900 Lakeside Dr', 'A luxurious villa with lakefront access', 'Villa', 4, 3, '2024-01-25', 109.99),
+    ('Mountain View Lodge', 'United States', 'Vail', 'Colorado', '1000 Lodge Rd', 'A spacious lodge with mountain vistas', 'Lodge', 6, 4, '2024-01-30', 100.50),
+    ('Seaside Bungalow', 'United States', 'Malibu', 'California', '1001 Ocean Dr', 'A cozy bungalow with a view of the ocean', 'Bungalow', 2, 1, '2024-04-15', 120.60),
+    ('Charming Cabin', 'United States', 'Aspen', 'Colorado', '2001 Cabin Rd', 'A rustic cabin for a mountain escape', 'Cabin', 2, 1, '2024-04-20', 156.50),
+    ('Luxury Penthouse', 'United States', 'Miami', 'Florida', '3001 Skyline Ave', 'A luxurious penthouse with city and ocean views', 'Penthouse', 3, 2, '2024-04-25', 260.70),
+    ('Riverside Cottage', 'United States', 'Portland', 'Oregon', '4001 River Rd', 'A peaceful cottage by the river', 'House', 2, 1, '2024-04-30', 105.99),
+    ('Classic Tudor', 'United States', 'Boston', 'Massachusetts', '5001 Tudor Ln', 'A classic Tudor-style home with vintage charm', 'House', 4, 3, '2024-05-05', 125.50),
+    ('Ski Lodge', 'United States', 'Jackson Hole', 'Wyoming', '6001 Ski Lodge Rd', 'A cozy lodge for winter adventures', 'Lodge', 5, 3, '2024-05-10', 99.80),
+    ('Beachfront Condo', 'United States', 'San Diego', 'California', '7001 Beach Dr', 'A modern condo with direct beach access', 'Condo', 2, 2, '2024-05-15', 360.99),
+    ('Hillside Retreat', 'United States', 'Santa Fe', 'New Mexico', '8001 Hill Rd', 'A serene hillside retreat with panoramic views', 'House', 3, 2, '2024-05-20', 260.80),
+    ('Vineyard Villa', 'United States', 'Napa Valley', 'California', '9001 Vineyard Ln', 'A villa surrounded by vineyards and wineries', 'Villa', 4, 4, '2024-05-25', 156.99),
+    ('Rustic Cabin', 'United States', 'Lake Tahoe', 'California', '10001 Forest Rd', 'A charming cabin for a cozy getaway', 'Cabin', 1, 1, '2024-05-30', 139.99);
 
 INSERT INTO Users (FirstName, LastName, Email, Password, UserType)
 VALUES
@@ -218,17 +219,17 @@ VALUES
     (26, 25, '2024-08-05', '2024-08-10', 1100.00, 'Pending'),
     (25, 26, '2024-08-10', '2024-08-15', 900.00, 'Confirmed');
 
-INSERT INTO Admins (FirstName, LastName, Email, Password)
+INSERT INTO Admins (FirstName, LastName, Email, Password, IsMaster)
 VALUES
-    ('Maximus', 'Taube', 'maximustaube@example.com', MD5('maximustaube123')),
-    ('Philippe', 'Ton-That', 'philippetonthat@example.com', MD5('philippetonthat123')),
-    ('John', 'Smith', 'johnsmith@example.com', MD5('johnsmith123')),
-    ('David', 'Williams', 'davidwilliams@example.com', MD5('davidwilliams456')),
-    ('Karen', 'Johnson', 'karenjohnson@example.com', MD5('karenjohnson789')),
-    ('Michael', 'Williams', 'michaelwilliams@example.com', MD5('michaelwilliams123')),
-    ('Sarah', 'Brown', 'sarahbrown@example.com', MD5('sarahbrown456')),
-    ('Robert', 'White', 'robertwhite@example.com', MD5('robertwhite789')),
-    ('Thomas', 'Johnson', 'thomasjohnson@example.com', MD5('thomasjohnson789')),
-    ('Jennifer', 'Williams', 'jenniferwilliams@example.com', MD5('jenniferwilliams123')),
-    ('Michelle', 'Brown', 'michellebrown@example.com', MD5('michellebrown456')),
-    ('Daniel', 'White', 'danielwhite@example.com', MD5('danielwhite789'));
+    ('Maximus', 'Taube', 'maximustaube@example.com', MD5('maximustaube123'), 1),
+    ('Philippe', 'Ton-That', 'philippetonthat@example.com', MD5('philippetonthat123'), 1),
+    ('John', 'Smith', 'johnsmith@example.com', MD5('johnsmith123'), 0),
+    ('David', 'Williams', 'davidwilliams@example.com', MD5('davidwilliams456'), 0),
+    ('Karen', 'Johnson', 'karenjohnson@example.com', MD5('karenjohnson789'), 0),
+    ('Michael', 'Williams', 'michaelwilliams@example.com', MD5('michaelwilliams123'), 0),
+    ('Sarah', 'Brown', 'sarahbrown@example.com', MD5('sarahbrown456'), 0),
+    ('Robert', 'White', 'robertwhite@example.com', MD5('robertwhite789'), 0),
+    ('Thomas', 'Johnson', 'thomasjohnson@example.com', MD5('thomasjohnson789'), 0),
+    ('Jennifer', 'Williams', 'jenniferwilliams@example.com', MD5('jenniferwilliams123'), 0),
+    ('Michelle', 'Brown', 'michellebrown@example.com', MD5('michellebrown456'), 0),
+    ('Daniel', 'White', 'danielwhite@example.com', MD5('danielwhite789'), 0);

@@ -39,9 +39,10 @@ class PropertyController
                 $numRooms = $_POST['NumRooms'];
                 $numBathrooms = $_POST['NumBathrooms'];
                 $availabilityDate = $_POST['AvailabilityDate'];
+                $pricePerNight = $_POST['PricePerNight'];
 
                 // Update the property's data in the PropertyModel and display success or error message if the property is found or not
-                $propertyModel->updateProperty($propertyID, $propertyName, $country, $city, $province, $streetAddress, $description, $propertyType, $numRooms, $numBathrooms, $availabilityDate);
+                $propertyModel->updateProperty($propertyID, $propertyName, $country, $city, $province, $streetAddress, $description, $propertyType, $numRooms, $numBathrooms, $availabilityDate, $pricePerNight);
                 header('Location: /eCommerce-Project/QuickStays/index.php?entity=property&action=list');
                 exit();
             } else {
@@ -75,14 +76,12 @@ class PropertyController
             $NumRooms = $_POST['NumRooms'];
             $NumBathrooms = $_POST['NumBathrooms'];
             $AvailabilityDate = $_POST['AvailabilityDate'];
+            $pricePerNight = $_POST['PricePerNight'];
 
-            // Create an instance of the PropertyModel
             $propertyModel = new PropertyModel();
 
-            // Add the new property to the database
-            $propertyModel->addProperty($PropertyName, $Country, $City, $Province, $StreetAddress, $Description, $PropertyType, $NumRooms, $NumBathrooms, $AvailabilityDate);
+            $propertyModel->addProperty($PropertyName, $Country, $City, $Province, $StreetAddress, $Description, $PropertyType, $NumRooms, $NumBathrooms, $AvailabilityDate, $pricePerNight);
 
-            // Redirect to the property list
             header('Location: /eCommerce-Project/QuickStays/index.php?entity=property&action=list');
             exit();
         } else {
@@ -117,8 +116,20 @@ class PropertyController
             $guests = $_POST['guests'];
 
             $propertyModel = new PropertyModel();
-
             $searchResults = $propertyModel->searchProperties($destination, $date, $guests);
+
+            $imageFilenames = [];
+
+            foreach ($searchResults as &$property) {
+                $propertyID = $property['PropertyID'];
+                $imageFolder = "images/property/$propertyID";
+                $thumbnail = "$imageFolder/1.jpg";
+                $imageFilenames[$propertyID] = $thumbnail;
+                $averageRating = $propertyModel->getAverageRatingForProperty($propertyID);
+                $property['AverageRating'] = $averageRating;
+            }
+
+            unset($property);
 
             include 'Views/Property/index.php';
         } else {
@@ -126,6 +137,7 @@ class PropertyController
             exit();
         }
     }
+
 
     public function book()
     {
@@ -135,6 +147,13 @@ class PropertyController
             $property = $propertyModel->getPropertyByID($propertyID);
 
             if ($property) {
+                // Get image filenames for the property
+                $imageFilenames = [];
+                $imageFolder = "images/property/$propertyID";
+                for ($i = 1; $i <= 3; $i++) {
+                    $imageFilenames[] = "$imageFolder/$i.jpg";
+                }
+                
                 include 'Views/Property/book.php';
             } else {
                 echo "<p>Property not found!</p>";
@@ -143,5 +162,6 @@ class PropertyController
             echo "<p>Invalid property ID!</p>";
         }
     }
+
 }
 ?>

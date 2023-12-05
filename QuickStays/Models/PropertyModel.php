@@ -17,11 +17,11 @@ class PropertyModel
         return $query->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function updateProperty($propertyID, $propertyName, $country, $city, $province, $streetAddress, $description, $propertyType, $numRooms, $numBathrooms, $availabilityDate)
+    public function updateProperty($propertyID, $propertyName, $country, $city, $province, $streetAddress, $description, $propertyType, $numRooms, $numBathrooms, $availabilityDate, $pricePerNight)
     {
         global $db;
-        $query = $db->prepare("UPDATE Properties SET PropertyName=?, Country=?, City=?, Province=?, StreetAddress=?, Description=?, PropertyType=?, NumRooms=?, NumBathrooms=?, AvailabilityDate=? WHERE PropertyID=?");
-        $query->execute([$propertyName, $country, $city, $province, $streetAddress, $description, $propertyType, $numRooms, $numBathrooms, $availabilityDate, $propertyID]);
+        $query = $db->prepare("UPDATE Properties SET PropertyName=?, Country=?, City=?, Province=?, StreetAddress=?, Description=?, PropertyType=?, NumRooms=?, NumBathrooms=?, AvailabilityDate=?, PricePerNight=? WHERE PropertyID=?");
+        $query->execute([$propertyName, $country, $city, $province, $streetAddress, $description, $propertyType, $numRooms, $numBathrooms, $availabilityDate, $pricePerNight, $propertyID]);
     }
 
     public function getPropertyByID($propertyID)
@@ -33,12 +33,12 @@ class PropertyModel
         return $property;
     }
 
-    public function addProperty($PropertyName, $Country, $City, $Province, $StreetAddress, $Description, $PropertyType, $NumRooms, $NumBathrooms, $AvailabilityDate)
+    public function addProperty($PropertyName, $Country, $City, $Province, $StreetAddress, $Description, $PropertyType, $NumRooms, $NumBathrooms, $AvailabilityDate, $PricePerNight)
     {
         global $db;
 
-        $query = $db->prepare("INSERT INTO Properties (PropertyName, Country, City, Province, StreetAddress, Description, PropertyType, NumRooms, NumBathrooms, AvailabilityDate) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-        $query->execute([$PropertyName, $Country, $City, $Province, $StreetAddress, $Description, $PropertyType, $NumRooms, $NumBathrooms, $AvailabilityDate]);
+        $query = $db->prepare("INSERT INTO Properties (PropertyName, Country, City, Province, StreetAddress, Description, PropertyType, NumRooms, NumBathrooms, AvailabilityDate, PricePerNight) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+        $query->execute([$PropertyName, $Country, $City, $Province, $StreetAddress, $Description, $PropertyType, $NumRooms, $NumBathrooms, $AvailabilityDate, $PricePerNight]);
 
         $propertyID = $db->lastInsertId();
 
@@ -99,6 +99,15 @@ class PropertyModel
         $query->execute([$destination, $destination, $date, $guests]);
 
         return $query->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function getAverageRatingForProperty($propertyID)
+    {
+        global $db;
+        $query = $db->prepare("SELECT IFNULL(AVG(Rating), 0) AS AvgRating FROM Reviews WHERE PropertyID = ?");
+        $query->execute([$propertyID]);
+        $result = $query->fetch(PDO::FETCH_ASSOC);
+        return $result['AvgRating'];
     }
 }
 ?>

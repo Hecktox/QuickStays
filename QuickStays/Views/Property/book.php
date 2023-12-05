@@ -15,9 +15,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Book Property</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">
     <style>
-        
         .property-images img {
             width: 100%;
             height: auto;
@@ -31,7 +31,11 @@
         <!-- Images Carousel -->
         <div id="propertyImagesCarousel" class="carousel slide" data-ride="carousel">
             <div class="carousel-inner property-images">
-           <!-- put images in here -->
+                <?php foreach ($imageFilenames as $index => $imageFilename): ?>
+                    <div class="carousel-item <?php echo $index === 0 ? 'active' : ''; ?>">
+                        <img src="<?php echo $imageFilename; ?>" class="d-block w-100" alt="Property Image">
+                    </div>
+                <?php endforeach; ?>
             </div>
             <a class="carousel-control-prev" href="#propertyImagesCarousel" role="button" data-slide="prev">
                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -44,12 +48,18 @@
         </div>
 
         <!-- Property Details -->
-        <?php if ($property) : ?>
+        <?php if ($property): ?>
             <div class="card">
                 <div class="card-body">
-                    <h5 class="card-title"><?php echo $property['PropertyName']; ?></h5>
-                    <h6 class="card-subtitle mb-2 text-muted"><?php echo $property['City'] . ', ' . $property['Country']; ?></h6>
-                    <p class="card-text"><?php // Additional property details ?></p>
+                    <h5 class="card-title">
+                        <?php echo $property['PropertyName']; ?>
+                    </h5>
+                    <h6 class="card-subtitle mb-2 text-muted">
+                        <?php echo $property['City'] . ', ' . $property['Country']; ?>
+                    </h6>
+                    <p class="card-text">
+                        <?php // Additional property details ?>
+                    </p>
                 </div>
             </div>
 
@@ -83,7 +93,7 @@
                     <button type="submit" class="btn btn-primary">Book Property</button>
                 </form>
             </div>
-        <?php else : ?>
+        <?php else: ?>
             <div class="alert alert-warning" role="alert">
                 Property not found.
             </div>
@@ -93,7 +103,8 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+    <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
     <script>
         $('.datepicker').datepicker({
             format: 'yyyy-mm-dd',
@@ -103,17 +114,17 @@
 </body>
 
 <footer class="bg-light text-center text-lg-start mt-5">
-            <div class="container p-4">
+    <div class="container p-4">
 
-                <div class="row d-flex justify-content-center">
-                    <div class="col-lg-6 col-md-12 mb-4 mb-md-0">
-                        <h5 class="text-uppercase">QuickStays</h5>
-                        <p>
-                            Making every stay a memorable one.
-                        </p>
-                    </div>
-                </div>
+        <div class="row d-flex justify-content-center">
+            <div class="col-lg-6 col-md-12 mb-4 mb-md-0">
+                <h5 class="text-uppercase">QuickStays</h5>
+                <p>
+                    Making every stay a memorable one.
+                </p>
             </div>
-        </footer>
+        </div>
+    </div>
+</footer>
 
 </html>
