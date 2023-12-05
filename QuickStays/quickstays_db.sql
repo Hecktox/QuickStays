@@ -68,7 +68,8 @@ CREATE TABLE Admins (
     FirstName VARCHAR(255),
     LastName VARCHAR(255),
     Email VARCHAR(255) UNIQUE,
-    Password VARCHAR(255)
+    Password VARCHAR(255),
+    IsMaster BOOLEAN DEFAULT false
 );
 
 -- Sample Data
