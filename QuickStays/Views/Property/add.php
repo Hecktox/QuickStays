@@ -47,7 +47,8 @@ if (!isset($_SESSION['admin_email'])) {
         <div class="row">
             <div class="col-md-6 offset-md-3">
                 <h1 class="mb-4 text-center">Add Property</h1>
-                <form method="POST" action="/eCommerce-Project/QuickStays/index.php?entity=property&action=add" class="bg-white p-3 border rounded">
+                <form method="POST" action="/eCommerce-Project/QuickStays/index.php?entity=property&action=add"
+                    class="bg-white p-3 border rounded">
                     <div class="form-group">
                         <label for="PropertyName">Property Name:</label>
                         <input type="text" class="form-control" name="PropertyName" required>
@@ -104,8 +105,14 @@ if (!isset($_SESSION['admin_email'])) {
                     </div>
 
                     <div class="form-group">
+                        <label for="PricePerNight">Price Per Night (CAD):</label>
+                        <input type="number" step="0.01" class="form-control" name="PricePerNight" required>
+                    </div>
+
+                    <div class="form-group">
                         <input type="submit" class="btn btn-primary" name="addProperty" value="Add Property">
-                        <button type="button" class="btn btn-secondary" onclick="window.location.href='/eCommerce-Project/QuickStays/index.php?entity=property&action=list'">Cancel</button>
+                        <button type="button" class="btn btn-secondary"
+                            onclick="window.location.href='/eCommerce-Project/QuickStays/index.php?entity=property&action=list'">Cancel</button>
                     </div>
                 </form>
             </div>

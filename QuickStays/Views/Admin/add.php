@@ -48,7 +48,8 @@ if (!isset($_SESSION['admin_email'])) {
         <div class="row">
             <div class="col-md-6 offset-md-3">
                 <h1 class="mb-4 text-center">Add Admin</h1>
-                <form method="POST" action="/eCommerce-Project/QuickStays/index.php?entity=admin&action=add" class="bg-white p-3 border rounded">
+                <form method="POST" action="/eCommerce-Project/QuickStays/index.php?entity=admin&action=add"
+                    class="bg-white p-3 border rounded">
                     <div class="form-group">
                         <label for="firstName">First Name:</label>
                         <input type="text" class="form-control" name="firstName" required>
@@ -70,8 +71,17 @@ if (!isset($_SESSION['admin_email'])) {
                     </div>
 
                     <div class="form-group">
+                        <label for="isMaster">Is Master:</label>
+                        <div class="form-check form-check-inline">
+                            <input type="checkbox" class="form-check-input" id="isMaster" name="isMaster" value="1">
+                            <label class="form-check-label" for="isMaster">Yes</label>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
                         <input type="submit" class="btn btn-primary" name="addAdmin" value="Add Admin">
-                        <button type="button" class="btn btn-secondary" onclick="window.location.href='/eCommerce-Project/QuickStays/index.php?entity=admin&action=list'">Cancel</button>
+                        <button type="button" class="btn btn-secondary"
+                            onclick="window.location.href='/eCommerce-Project/QuickStays/index.php?entity=admin&action=list'">Cancel</button>
                     </div>
                 </form>
             </div>

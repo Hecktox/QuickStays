@@ -42,6 +42,7 @@ if (!isset($_SESSION['admin_email'])) {
                     <th>Num Rooms</th>
                     <th>Num Bathrooms</th>
                     <th>Availability Date</th>
+                    <th>Price Per Night</th>
                     <th>Edit</th>
                     <th>Delete</th>
                 </tr>
@@ -61,6 +62,7 @@ if (!isset($_SESSION['admin_email'])) {
                     echo "<td>{$property['NumRooms']}</td>";
                     echo "<td>{$property['NumBathrooms']}</td>";
                     echo "<td>{$property['AvailabilityDate']}</td>";
+                    echo "<td>{$property['PricePerNight']}</td>";
                     echo "<td><button onclick='editProperty({$property['PropertyID']})' class='btn btn-warning btn-sm'>Edit</button></td>";
                     echo "<td><button onclick='confirmDelete({$property['PropertyID']})' class='btn btn-danger btn-sm'>Delete</button></td>";
                     echo "</tr>";

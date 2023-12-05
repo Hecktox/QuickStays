@@ -105,6 +105,11 @@ if (!isset($_SESSION['admin_email'])) {
                     </div>
 
                     <div class="form-group">
+                        <label for="PricePerNight">Price Per Night (CAD):</label>
+                        <input type="number" step="0.01" class="form-control" name="PricePerNight" required value="<?php echo $property['PricePerNight']; ?>">
+                    </div>
+
+                    <div class="form-group">
                         <input type="submit" class="btn btn-primary" name="saveProperty" value="Save">
                         <button type="button" class="btn btn-secondary" onclick="window.location.href='/eCommerce-Project/QuickStays/index.php?entity=property&action=list'">Cancel</button>
                     </div>

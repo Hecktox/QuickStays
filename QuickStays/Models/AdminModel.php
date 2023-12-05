@@ -17,12 +17,12 @@ class AdminModel
         return $query->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function updateAdmin($adminID, $firstName, $lastName, $email, $password)
+    public function updateAdmin($adminID, $firstName, $lastName, $email, $password, $isMaster)
     {
         global $db;
         $hashedPassword = md5($password);
-        $query = $db->prepare("UPDATE Admins SET FirstName=?, LastName=?, Email=?, Password=? WHERE AdminID=?");
-        $query->execute([$firstName, $lastName, $email, $hashedPassword, $adminID]);
+        $query = $db->prepare("UPDATE Admins SET FirstName=?, LastName=?, Email=?, Password=?, IsMaster=? WHERE AdminID=?");
+        $query->execute([$firstName, $lastName, $email, $hashedPassword, $isMaster, $adminID]);
     }
 
     public function getAdminByID($adminID)
@@ -35,12 +35,12 @@ class AdminModel
         return $admin;
     }
 
-    public function addAdmin($firstName, $lastName, $email, $password)
+    public function addAdmin($firstName, $lastName, $email, $password, $isMaster)
     {
         global $db;
         $hashedPassword = md5($password);
-        $query = $db->prepare("INSERT INTO Admins (FirstName, LastName, Email, Password) VALUES (?, ?, ?, ?)");
-        $query->execute([$firstName, $lastName, $email, $hashedPassword]);
+        $query = $db->prepare("INSERT INTO Admins (FirstName, LastName, Email, Password, IsMaster) VALUES (?, ?, ?, ?, ?)");
+        $query->execute([$firstName, $lastName, $email, $hashedPassword, $isMaster]);
     }
 
     public function deleteAdmin($adminID)

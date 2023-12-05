@@ -34,8 +34,9 @@ class AdminController
                 $lastName = $_POST['lastName'];
                 $email = $_POST['email'];
                 $password = $_POST['password'];
+                $isMaster = $_POST['isMaster'];
 
-                $adminModel->updateAdmin($adminID, $firstName, $lastName, $email, $password);
+                $adminModel->updateAdmin($adminID, $firstName, $lastName, $email, $password, $isMaster);
                 header('Location: /eCommerce-Project/QuickStays/index.php?entity=admin&action=list');
                 exit();
             } else {
@@ -63,9 +64,10 @@ class AdminController
             $lastName = $_POST['lastName'];
             $email = $_POST['email'];
             $password = $_POST['password'];
+            $isMaster = isset($_POST['isMaster']) ? 1 : 0;
 
             $adminModel = new AdminModel();
-            $adminModel->addAdmin($firstName, $lastName, $email, $password);
+            $adminModel->addAdmin($firstName, $lastName, $email, $password, $isMaster);
 
             header('Location: /eCommerce-Project/QuickStays/index.php?entity=admin&action=list');
             exit();
@@ -100,9 +102,10 @@ class AdminController
             $lastName = $_POST['lastName'];
             $email = $_POST['email'];
             $password = $_POST['password'];
+            $isMaster = $_POST['isMaster'];
 
             $adminModel = new AdminModel();
-            $adminModel->addAdmin($firstName, $lastName, $email, $password);
+            $adminModel->addAdmin($firstName, $lastName, $email, $password, $isMaster);
 
             // Redirect to the login page after registration
             header('Location: /eCommerce-Project/QuickStays/index.php?entity=login&action=login');

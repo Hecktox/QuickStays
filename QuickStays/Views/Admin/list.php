@@ -36,6 +36,7 @@ if (!isset($_SESSION['admin_email'])) {
                     <th>Last Name</th>
                     <th>Email</th>
                     <th>Password</th>
+                    <th>Master</th>
                     <th>Edit</th>
                     <th>Delete</th>
                 </tr>
@@ -49,6 +50,7 @@ if (!isset($_SESSION['admin_email'])) {
                     echo "<td>{$admin['LastName']}</td>";
                     echo "<td>{$admin['Email']}</td>";
                     echo "<td>{$admin['Password']}</td>";
+                    echo "<td>{$admin['IsMaster']}</td>";
                     echo "<td><button onclick='editAdmin({$admin['AdminID']})' class='btn btn-warning btn-sm'>Edit</button></td>";
                     echo "<td><button onclick='confirmDelete({$admin['AdminID']})' class='btn btn-danger btn-sm'>Delete</button></td>";
                     echo "</tr>";
