@@ -16,6 +16,7 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.9.5/umd.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
 </head>
 
 <body class="bg-light">
@@ -64,7 +65,13 @@ if (isset($_SESSION['admin_email'])) {
 
         if (isset($_SESSION['admin_email'])) {
             echo '<div class="container mt-5">';
-            echo "<h1>Welcome to Your Dashboard, " . htmlspecialchars($_SESSION['admin_email']) . "</h1>";
+            echo "<h1>Welcome, " . htmlspecialchars($_SESSION['admin_email']) . "</h1>";
+            echo "<p class='lead'>Here's your dashboard summary:</p>";
+            // Example of adding summary stats (you'll need to replace these with real data)
+            echo "<div class='row'>";
+            echo "<div class='col-md-4'><div class='alert alert-info'>Total Users: <strong>123</strong></div></div>";
+            echo "<div class='col-md-4'><div class='alert alert-success'>Properties: <strong>45</strong></div></div>";
+            echo "</div>";
 
             echo '<form method="GET" action="/eCommerce-Project/QuickStays/index.php" class="mt-4">';
             echo '<div class="form-group">';
@@ -81,6 +88,18 @@ if (isset($_SESSION['admin_email'])) {
             echo '<input type="hidden" name="action" value="list">';
             echo '<button type="submit" class="btn btn-success">Submit</button>';
             echo '</form>';
+
+            echo "<div class='row'>";
+            echo "<div class='col-md-8'>";
+            echo "<h2>Dashboard User Guide</h2>";
+            echo "<p data-toggle='tooltip' title='Use the dropdown to select the entity you wish to manage'>Select an entity from the dropdown to manage your data.</p>";
+            echo "<p data-toggle='tooltip' title='Click submit to view the entity data'>Click submit to view the selected entity's data.</p>";
+            echo "</div>";
+            echo "<div class='col-md-4'>";
+            echo "<h2>Recent Activity</h2>";
+            echo "<h5>Recent Sign-ups</h5>";
+            echo "<ul>";
+            
         } else {
             echo '<div class="container mt-5">';
             echo '<div class="alert alert-warning" role="alert">';
@@ -89,8 +108,11 @@ if (isset($_SESSION['admin_email'])) {
             echo '<a href="/eCommerce-Project/QuickStays/index.php?entity=login&action=login" class="btn btn-primary">Login</a>';
             echo '</div>'; 
         }
+        
         ?>
     </div>
 </body>
+
+
 
 </html>

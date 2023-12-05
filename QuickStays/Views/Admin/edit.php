@@ -19,6 +19,11 @@ if (!isset($_SESSION['admin_email'])) {
 
 <head>
     <title>Edit Admin</title>
+    <!-- Include Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.9.5/umd.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script>
         // JavaScript function to toggle password visibility
         function togglePasswordVisibility() {
@@ -36,29 +41,43 @@ if (!isset($_SESSION['admin_email'])) {
     </script>
 </head>
 
-</head>
+<body class="bg-light">
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+                <h1 class="mb-4 text-center">Edit Admin</h1>
+                <form method="POST" action="/eCommerce-Project/QuickStays/index.php?entity=admin&action=edit" class="bg-white p-3 border rounded">
+                    <input type="hidden" name="adminID" value="<?php echo $admin['AdminID']; ?>">
 
-<body>
-    <h1>Edit Admin</h1>
-    <form method="POST" action="/eCommerce-Project/QuickStays/index.php?entity=admin&action=edit">
-        <input type="hidden" name="adminID" value="<?php echo $admin['AdminID']; ?>">
-        <label for="firstName">First Name:</label>
-        <input type="text" name="firstName" value="<?php echo $admin['FirstName']; ?>" required><br>
+                    <div class="form-group">
+                        <label for="firstName">First Name:</label>
+                        <input type="text" class="form-control" name="firstName" value="<?php echo $admin['FirstName']; ?>" required>
+                    </div>
 
-        <label for="lastName">Last Name:</label>
-        <input type="text" name="lastName" value="<?php echo $admin['LastName']; ?>" required><br>
+                    <div class="form-group">
+                        <label for="lastName">Last Name:</label>
+                        <input type="text" class="form-control" name="lastName" value="<?php echo $admin['LastName']; ?>" required>
+                    </div>
 
-        <label for="email">Email:</label>
-        <input type="email" name="email" value="<?php echo $admin['Email']; ?>" required><br>
+                    <div class="form-group">
+                        <label for="email">Email:</label>
+                        <input type="email" class="form-control" name="email" value="<?php echo $admin['Email']; ?>" required>
+                    </div>
 
-        <label for="password">Password:</label>
-        <input type="password" name="password" id="password" value="<?php echo $admin['Password']; ?>" required>
-        <button type="button" id="showPassword" onclick="togglePasswordVisibility()">Show Password</button><br>
+                    <div class="form-group">
+                        <label for="password">Password:</label>
+                        <input type="password" class="form-control" name="password" id="password" value="<?php echo $admin['Password']; ?>" required>
+                        <button type="button" class="btn btn-outline-primary mt-2" id="showPassword" onclick="togglePasswordVisibility()">Show Password</button>
+                    </div>
 
-        <input type="submit" name="saveAdmin" value="Save">
-        <button type="button"
-            onclick="window.location.href='/eCommerce-Project/QuickStays/index.php?entity=admin&action=list'">Cancel</button>
-    </form>
+                    <div class="form-group">
+                        <input type="submit" class="btn btn-primary" name="saveAdmin" value="Save">
+                        <button type="button" class="btn btn-secondary" onclick="window.location.href='/eCommerce-Project/QuickStays/index.php?entity=admin&action=list'">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 </body>
 
 </html>
