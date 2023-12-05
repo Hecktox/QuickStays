@@ -3,6 +3,8 @@
  Team Project
  Maximus Taube
  2095310
+ Philippe Ton-That
+ 2033640
 -->
 
 <?php
@@ -90,7 +92,5 @@ if (!isset($_SESSION['admin_email'])) {
         </div>
     </div>
 </body>
-
-
 
 </html>
