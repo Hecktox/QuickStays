@@ -30,7 +30,8 @@ CREATE TABLE Users (
     LastName VARCHAR(255),
     Email VARCHAR(255) UNIQUE,
     Password VARCHAR(255),
-    UserType ENUM('Host', 'Traveler')
+    UserType ENUM('Host', 'Traveler'),
+    IsMaster BOOLEAN DEFAULT false
 );
 
 CREATE TABLE Reviews (
@@ -62,15 +63,6 @@ CREATE TABLE Bookings (
     Status ENUM('Pending', 'Confirmed', 'Cancelled'),
     FOREIGN KEY (UserID) REFERENCES Users(UserID),
     FOREIGN KEY (PropertyID) REFERENCES Properties(PropertyID)
-);
-
-CREATE TABLE Admins (
-    AdminID INT AUTO_INCREMENT PRIMARY KEY,
-    FirstName VARCHAR(255),
-    LastName VARCHAR(255),
-    Email VARCHAR(255) UNIQUE,
-    Password VARCHAR(255),
-    IsMaster BOOLEAN DEFAULT false
 );
 
 -- Sample Data
@@ -131,6 +123,22 @@ VALUES
     ('Charlotte', 'Moore', 'charlotte@example.com', MD5('charlottemoore456'), 'Traveler'),
     ('William', 'Hill', 'williamhill@example.com', MD5('williamhill123'), 'Host'),
     ('Sophia', 'Taylor', 'sophia@example.com', MD5('sophiataylor456'), 'Traveler');
+
+-- Admins
+INSERT INTO Users (FirstName, LastName, Email, Password, IsMaster)
+VALUES
+    ('Maximus', 'Taube', 'maximustaube@example.com', MD5('maximustaube123'), 1),
+    ('Philippe', 'Ton-That', 'philippetonthat@example.com', MD5('philippetonthat123'), 1),
+    ('John', 'Smith', 'johnsmith@example.com', MD5('johnsmith123'), 0),
+    ('David', 'Williams', 'davidwilliams@example.com', MD5('davidwilliams456'), 0),
+    ('Karen', 'Johnson', 'karenjohnson@example.com', MD5('karenjohnson789'), 0),
+    ('Michael', 'Williams', 'michaelwilliams@example.com', MD5('michaelwilliams123'), 0),
+    ('Sarah', 'Brown', 'sarahbrown@example.com', MD5('sarahbrown456'), 0),
+    ('Robert', 'White', 'robertwhite@example.com', MD5('robertwhite789'), 0),
+    ('Thomas', 'Johnson', 'thomasjohnson@example.com', MD5('thomasjohnson789'), 0),
+    ('Jennifer', 'Williams', 'jenniferwilliams@example.com', MD5('jenniferwilliams123'), 0),
+    ('Michelle', 'Brown', 'michellebrown@example.com', MD5('michellebrown456'), 0),
+    ('Daniel', 'White', 'danielwhite@example.com', MD5('danielwhite789'), 0);
 
 INSERT INTO Reviews (PropertyID, UserID, Rating, Comment)
 VALUES
@@ -218,18 +226,3 @@ VALUES
     (23, 24, '2024-07-30', '2024-08-05', 800.00, 'Confirmed'),
     (26, 25, '2024-08-05', '2024-08-10', 1100.00, 'Pending'),
     (25, 26, '2024-08-10', '2024-08-15', 900.00, 'Confirmed');
-
-INSERT INTO Admins (FirstName, LastName, Email, Password, IsMaster)
-VALUES
-    ('Maximus', 'Taube', 'maximustaube@example.com', MD5('maximustaube123'), 1),
-    ('Philippe', 'Ton-That', 'philippetonthat@example.com', MD5('philippetonthat123'), 1),
-    ('John', 'Smith', 'johnsmith@example.com', MD5('johnsmith123'), 0),
-    ('David', 'Williams', 'davidwilliams@example.com', MD5('davidwilliams456'), 0),
-    ('Karen', 'Johnson', 'karenjohnson@example.com', MD5('karenjohnson789'), 0),
-    ('Michael', 'Williams', 'michaelwilliams@example.com', MD5('michaelwilliams123'), 0),
-    ('Sarah', 'Brown', 'sarahbrown@example.com', MD5('sarahbrown456'), 0),
-    ('Robert', 'White', 'robertwhite@example.com', MD5('robertwhite789'), 0),
-    ('Thomas', 'Johnson', 'thomasjohnson@example.com', MD5('thomasjohnson789'), 0),
-    ('Jennifer', 'Williams', 'jenniferwilliams@example.com', MD5('jenniferwilliams123'), 0),
-    ('Michelle', 'Brown', 'michellebrown@example.com', MD5('michellebrown456'), 0),
-    ('Daniel', 'White', 'danielwhite@example.com', MD5('danielwhite789'), 0);
