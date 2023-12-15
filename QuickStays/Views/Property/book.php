@@ -120,28 +120,32 @@
         <!-- Review Submission Form -->
         <div class="review-form mt-4">
             <h4>Add Your Review</h4>
-            <form method="POST" action="/eCommerce-Project/QuickStays/index.php?entity=review&action=add">
-                <input type="hidden" name="PropertyID" value="<?php echo $property['PropertyID']; ?>">
-                <input type="hidden" name="UserID" value="<?php echo $userId; ?>">
+            <form method="POST" action="/eCommerce-Project/QuickStays/index.php?entity=review&action=add" class="bg-white p-3 border rounded">
+                    <div class="form-group">
+                        <label for="PropertyID">Property ID:</label>
+                        <input type="number" class="form-control" name="PropertyID" required>
+                    </div>
 
-                <div class="form-group">
-                    <label for="rating">Rating</label>
-                    <select class="form-control" id="rating" name="rating">
-                        <option value="1">1 Star</option>
-                        <option value="2">2 Stars</option>
-                        <option value="3">3 Stars</option>
-                        <option value="4">4 Stars</option>
-                        <option value="5">5 Stars</option>
-                    </select>
-                </div>
+                    <div class="form-group">
+                        <label for="UserID">User ID:</label>
+                        <input type="number" class="form-control" name="UserID" required>
+                    </div>
 
-                <div class="form-group">
-                    <label for="comment">Review</label>
-                    <textarea class="form-control" id="comment" name="comment" rows="3" required></textarea>
-                </div>
+                    <div class="form-group">
+                        <label for="Rating">Rating:</label>
+                        <input type="number" step="0.1" class="form-control" name="Rating" required>
+                    </div>
 
-                <button type="submit" name="addReview" class="btn btn-primary">Submit Review</button>
-            </form>
+                    <div class="form-group">
+                        <label for="Comment">Comment:</label>
+                        <textarea class="form-control" name="Comment" required></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="submit" class="btn btn-primary" name="addReview" value="Add Review">
+                        <button type="button" class="btn btn-secondary" onclick="window.location.href='/eCommerce-Project/QuickStays/index.php?entity=review&action=list'">Cancel</button>
+                    </div>
+                </form>
         </div>
     <?php endif; ?>
 
