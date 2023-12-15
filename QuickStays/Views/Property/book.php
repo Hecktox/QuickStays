@@ -98,7 +98,33 @@
                 Property not found.
             </div>
         <?php endif; ?>
+
+        <!-- Reviews Section -->
+        <div class="reviews-section mt-4">
+            <h3>Guest Reviews</h3>
+            <?php
+            // Assuming you have a method in your PropertyModel to fetch reviews
+            require_once 'Models/PropertyModel.php';
+
+            $propertyModel = new PropertyModel();
+            $reviews = $propertyModel->getReviewsByPropertyId($property['PropertyID']);
+
+            if (!empty($reviews)):
+                foreach ($reviews as $review): ?>
+                    <div class="review">
+                        <p><strong><?php echo htmlspecialchars($review['FirstName']) . ' ' . htmlspecialchars($review['LastName']); ?>:</strong> <?php echo htmlspecialchars($review['Comment']); ?></p>
+                        <p>Rating: <?php echo htmlspecialchars($review['Rating']); ?>/5</p>
+                    </div>
+                <?php endforeach;
+            else: ?>
+                <p>No reviews yet.</p>
+            <?php endif; ?>
+        </div>
     </div>
+    
+
+
+
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>

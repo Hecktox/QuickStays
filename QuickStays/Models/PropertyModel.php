@@ -109,5 +109,19 @@ class PropertyModel
         $result = $query->fetch(PDO::FETCH_ASSOC);
         return $result['AvgRating'];
     }
+    public function getReviewsByPropertyId($propertyId)
+{
+    global $db;
+    $query = $db->prepare("SELECT Reviews.Rating, Reviews.Comment, Users.FirstName, Users.LastName 
+                            FROM Reviews 
+                            JOIN Users ON Reviews.UserID = Users.UserID 
+                            WHERE Reviews.PropertyID = ?");
+    $query->execute([$propertyId]);
+    return $query->fetchAll(PDO::FETCH_ASSOC);
 }
+
+}
+
+
+
 ?>

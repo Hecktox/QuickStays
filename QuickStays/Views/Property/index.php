@@ -150,6 +150,7 @@
         <?php endif; ?>
     </div>
 
+
     <footer class="bg-light text-center text-lg-start mt-5">
         <div class="container p-4">
             <div class="row d-flex justify-content-center">
