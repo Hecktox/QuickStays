@@ -27,6 +27,12 @@
 </head>
 
 <body>
+<?php 
+    session_start(); 
+    require_once 'Models/PropertyModel.php';
+
+    ?>
+
     <div class="container my-4">
         <!-- Images Carousel -->
         <div id="propertyImagesCarousel" class="carousel slide" data-ride="carousel">
@@ -100,27 +106,58 @@
         <?php endif; ?>
 
         <!-- Reviews Section -->
-        <div class="reviews-section mt-4">
-            <h3>Guest Reviews</h3>
-            <?php
-            // Assuming you have a method in your PropertyModel to fetch reviews
-            require_once 'Models/PropertyModel.php';
+<div class="reviews-section mt-4">
+    <h3>Guest Reviews</h3>
 
-            $propertyModel = new PropertyModel();
-            $reviews = $propertyModel->getReviewsByPropertyId($property['PropertyID']);
+    <?php
+    $propertyModel = new PropertyModel();
+    $reviews = $propertyModel->getReviewsByPropertyId($property['PropertyID']);
+    $userId = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : null;
 
-            if (!empty($reviews)):
-                foreach ($reviews as $review): ?>
-                    <div class="review">
-                        <p><strong><?php echo htmlspecialchars($review['FirstName']) . ' ' . htmlspecialchars($review['LastName']); ?>:</strong> <?php echo htmlspecialchars($review['Comment']); ?></p>
-                        <p>Rating: <?php echo htmlspecialchars($review['Rating']); ?>/5</p>
-                    </div>
-                <?php endforeach;
-            else: ?>
-                <p>No reviews yet.</p>
-            <?php endif; ?>
+    // Check if the user is logged in and has booked the property
+    if ($userId && $propertyModel->hasUserBookedProperty($userId, $property['PropertyID'])):
+        ?>
+        <!-- Review Submission Form -->
+        <div class="review-form mt-4">
+            <h4>Add Your Review</h4>
+            <form method="POST" action="/eCommerce-Project/QuickStays/index.php?entity=review&action=add">
+                <input type="hidden" name="PropertyID" value="<?php echo $property['PropertyID']; ?>">
+                <input type="hidden" name="UserID" value="<?php echo $userId; ?>">
+
+                <div class="form-group">
+                    <label for="rating">Rating</label>
+                    <select class="form-control" id="rating" name="rating">
+                        <option value="1">1 Star</option>
+                        <option value="2">2 Stars</option>
+                        <option value="3">3 Stars</option>
+                        <option value="4">4 Stars</option>
+                        <option value="5">5 Stars</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="comment">Review</label>
+                    <textarea class="form-control" id="comment" name="comment" rows="3" required></textarea>
+                </div>
+
+                <button type="submit" name="addReview" class="btn btn-primary">Submit Review</button>
+            </form>
         </div>
-    </div>
+    <?php endif; ?>
+
+    <!-- Displaying Existing Reviews -->
+    <?php if (!empty($reviews)): ?>
+        <?php foreach ($reviews as $review): ?>
+            <div class="review">
+                <p><strong><?php echo htmlspecialchars($review['FirstName']) . ' ' . htmlspecialchars($review['LastName']); ?>:</strong> <?php echo htmlspecialchars($review['Comment']); ?></p>
+                <p>Rating: <?php echo htmlspecialchars($review['Rating']); ?>/5</p>
+            </div>
+        <?php endforeach; ?>
+    <?php else: ?>
+        <p>No reviews yet.</p>
+    <?php endif; ?>
+</div>
+
     
 
 

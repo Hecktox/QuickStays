@@ -109,6 +109,7 @@ class PropertyModel
         $result = $query->fetch(PDO::FETCH_ASSOC);
         return $result['AvgRating'];
     }
+
     public function getReviewsByPropertyId($propertyId)
 {
     global $db;
@@ -119,6 +120,14 @@ class PropertyModel
     $query->execute([$propertyId]);
     return $query->fetchAll(PDO::FETCH_ASSOC);
 }
+
+    public function hasUserBookedProperty($userId, $propertyId) {
+        global $db; // Ensure you have a database connection variable $db
+        $query = $db->prepare("SELECT COUNT(*) FROM Bookings WHERE UserID = ? AND PropertyID = ? AND Status = 'Confirmed'");
+        $query->execute([$userId, $propertyId]);
+        return $query->fetchColumn() > 0;
+    }
+
 
 }
 
