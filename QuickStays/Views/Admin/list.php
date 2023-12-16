@@ -8,8 +8,9 @@
 <?php
 session_start();
 
-if (!isset($_SESSION['admin_email'])) {
-    header('Location: /eCommerce-Project/QuickStays/index.php?entity=user&action=index');
+if (!isset($_SESSION['user_type'])) {
+    // Redirect to the login page if the user type is not set
+    header('Location: /eCommerce-Project/QuickStays/index.php?entity=login&action=index');
     exit();
 }
 ?>
@@ -25,13 +26,15 @@ if (!isset($_SESSION['admin_email'])) {
 <body class="bg-light">
     <div class="container py-5">
         <h1 class="display-4 mb-4">Admin List</h1>
-        <a href='/eCommerce-Project/QuickStays/index.php?entity=admin&action=index' class="btn btn-secondary mb-2">Back to Entity Selection</a>
-        <a href='/eCommerce-Project/QuickStays/index.php?entity=admin&action=add' class="btn btn-primary mb-2">Add Admin</a>
+        <a href='/eCommerce-Project/QuickStays/index.php?entity=admin&action=index' class="btn btn-secondary mb-2">Back
+            to Entity Selection</a>
+        <a href='/eCommerce-Project/QuickStays/index.php?entity=admin&action=add' class="btn btn-primary mb-2">Add
+            Admin</a>
 
         <table class="table table-striped">
             <thead>
                 <tr>
-                    <th>Admin ID</th>
+                    <th>User ID</th>
                     <th>First Name</th>
                     <th>Last Name</th>
                     <th>Email</th>
@@ -45,14 +48,14 @@ if (!isset($_SESSION['admin_email'])) {
                 <?php
                 foreach ($admins as $admin) {
                     echo "<tr>";
-                    echo "<td>{$admin['AdminID']}</td>";
+                    echo "<td>{$admin['UserID']}</td>";
                     echo "<td>{$admin['FirstName']}</td>";
                     echo "<td>{$admin['LastName']}</td>";
                     echo "<td>{$admin['Email']}</td>";
                     echo "<td>{$admin['Password']}</td>";
                     echo "<td>{$admin['IsMaster']}</td>";
-                    echo "<td><button onclick='editAdmin({$admin['AdminID']})' class='btn btn-warning btn-sm'>Edit</button></td>";
-                    echo "<td><button onclick='confirmDelete({$admin['AdminID']})' class='btn btn-danger btn-sm'>Delete</button></td>";
+                    echo "<td><button onclick='editAdmin({$admin['UserID']})' class='btn btn-warning btn-sm'>Edit</button></td>";
+                    echo "<td><button onclick='confirmDelete({$admin['UserID']})' class='btn btn-danger btn-sm'>Delete</button></td>";
                     echo "</tr>";
                 }
                 ?>

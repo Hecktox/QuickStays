@@ -9,8 +9,9 @@
 <?php
 session_start();
 
-if (!isset($_SESSION['admin_email'])) {
-    header('Location: /eCommerce-Project/QuickStays/index.php?entity=user&action=index');
+if (!isset($_SESSION['user_type'])) {
+    // Redirect to the login page if the user type is not set
+    header('Location: /eCommerce-Project/QuickStays/index.php?entity=login&action=index');
     exit();
 }
 ?>

@@ -13,7 +13,7 @@ class AdminModel
     public function getAdmins()
     {
         global $db;
-        $query = $db->query("SELECT * FROM Admins");
+        $query = $db->query("SELECT * FROM Users WHERE UserType IS NULL");
         return $query->fetchAll(PDO::FETCH_ASSOC);
     }
 
@@ -21,14 +21,14 @@ class AdminModel
     {
         global $db;
         $hashedPassword = md5($password);
-        $query = $db->prepare("UPDATE Admins SET FirstName=?, LastName=?, Email=?, Password=?, IsMaster=? WHERE AdminID=?");
+        $query = $db->prepare("UPDATE Users SET FirstName=?, LastName=?, Email=?, Password=?, UserType=NULL, IsMaster=? WHERE UserID=? AND UserType IS NULL");
         $query->execute([$firstName, $lastName, $email, $hashedPassword, $isMaster, $adminID]);
     }
 
     public function getAdminByID($adminID)
     {
         global $db;
-        $query = $db->prepare("SELECT * FROM Admins WHERE AdminID = ?");
+        $query = $db->prepare("SELECT * FROM Users WHERE UserID = ? AND UserType IS NULL");
         $query->execute([$adminID]);
         $admin = $query->fetch(PDO::FETCH_ASSOC);
 
@@ -39,14 +39,14 @@ class AdminModel
     {
         global $db;
         $hashedPassword = md5($password);
-        $query = $db->prepare("INSERT INTO Admins (FirstName, LastName, Email, Password, IsMaster) VALUES (?, ?, ?, ?, ?)");
+        $query = $db->prepare("INSERT INTO Users (FirstName, LastName, Email, Password, IsMaster) VALUES (?, ?, ?, ?, ?)");
         $query->execute([$firstName, $lastName, $email, $hashedPassword, $isMaster]);
     }
 
     public function deleteAdmin($adminID)
     {
         global $db;
-        $query = $db->prepare("DELETE FROM Admins WHERE AdminID = ?");
+        $query = $db->prepare("DELETE FROM Users WHERE UserID = ? AND UserType IS NULL");
         $query->execute([$adminID]);
     }
 }
