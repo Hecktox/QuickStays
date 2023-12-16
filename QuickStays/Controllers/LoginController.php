@@ -29,14 +29,22 @@ class LoginController
                 // Check the UserType and set it in the session
                 if ($userOrAdmin['UserType'] === 'Host') {
                     $_SESSION['user_type'] = 'Host';
-                    header('Location: /eCommerce-Project/QuickStays/index.php?entity=user&action=index');
                 } elseif ($userOrAdmin['UserType'] === 'Traveler') {
                     $_SESSION['user_type'] = 'Traveler';
-                    header('Location: /eCommerce-Project/QuickStays/index.php?entity=user&action=index');
                 } else {
                     // UserType is null, indicating an admin
                     $_SESSION['user_type'] = 'Admin';
+
+                    // Set IsMaster in the session if it exists in the userOrAdmin array
+                    if (isset($userOrAdmin['IsMaster'])) {
+                        $_SESSION['IsMaster'] = $userOrAdmin['IsMaster'];
+                    }
+                }
+                
+                if ($_SESSION['user_type'] === 'Admin') {
                     header('Location: /eCommerce-Project/QuickStays/index.php?entity=admin&action=index');
+                } else {
+                    header('Location: /eCommerce-Project/QuickStays/index.php?entity=user&action=index');
                 }
                 exit();
             } else {

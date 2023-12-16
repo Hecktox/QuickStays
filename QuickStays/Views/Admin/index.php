@@ -63,6 +63,9 @@
         echo '<button type="submit" class="btn btn-success">Submit</button>';
         echo '</form>';
 
+        echo '<div class="text-center mt-3">';
+        echo '<a href="/eCommerce-Project/QuickStays/index.php?entity=admin&action=register" class="btn btn-primary btn-lg">Register Admin</a>';
+        echo '</div>';
         echo "<div class='row'>";
         echo "<div class='col-md-8'>";
         echo "<h2>Dashboard User Guide</h2>";
