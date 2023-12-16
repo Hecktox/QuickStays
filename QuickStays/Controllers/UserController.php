@@ -128,5 +128,8 @@ class UserController
     public function faq(){
         include 'Views/User/faq.php';
     }
+    public function contact(){
+        include 'Views/User/contact.php';
+    }
 }
 ?>
