@@ -20,45 +20,48 @@
 </head>
 
 <body class="bg-light">
-    <?php
-session_start();
-// Check if the admin is logged in
-if (isset($_SESSION['admin_email'])) {
-    echo '<nav class="navbar navbar-expand-lg navbar-light bg-light">';
-    echo '  <a class="navbar-brand" href="/eCommerce-Project/QuickStays">QuickStays</a>';
-    echo '  <div class="collapse navbar-collapse" id="navbarNav">';
-    echo '    <ul class="navbar-nav ml-auto">';
-    echo '      <li class="nav-item dropdown">';
-    echo '        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">';
-    echo '          ' . htmlspecialchars($_SESSION['admin_email']) . ''; 
-    echo '        </a>';
-    echo '        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">';
-    echo '          <a class="dropdown-item" href="/eCommerce-Project/QuickStays/index.php?entity=login&action=logout">Log out</a>';
-    echo '        </div>';
-    echo '      </li>';
-    echo '    </ul>';
-    echo '  </div>';
-    echo '</nav>';
-} else {
-    // User is not logged in, show the Login and Sign up links
-    echo '<nav class="navbar navbar-expand-lg navbar-light bg-light">';
-    echo '  <a class="navbar-brand" href="/eCommerce-Project/QuickStays/Views/User/index.php">QuickStays</a>';
-    echo '  <div class="collapse navbar-collapse" id="navbarNav">';
-    echo '    <ul class="navbar-nav ml-auto">';
-    echo '      <li class="nav-item dropdown">';
-    echo '        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">';
-    echo '          Account';
-    echo '        </a>';
-    echo '        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">';
-    echo '          <a class="dropdown-item" href="/eCommerce-Project/QuickStays/index.php?entity=login&action=login">Login</a>';
-    echo '          <a class="dropdown-item" href="/eCommerce-Project/QuickStays/index.php?entity=user&action=register">Sign Up</a>';
-    echo '        </div>';
-    echo '      </li>';
-    echo '    </ul>';
-    echo '  </div>';
-    echo '</nav>';
-}
-?>
+<?php
+    session_start();
+    // Check if the user is logged in
+    if (isset($_SESSION['user_email'])) {
+        echo '<nav class="navbar navbar-expand-lg navbar-light bg-light">';
+        echo '  <a class="navbar-brand" href="/eCommerce-Project/QuickStays">QuickStays</a>';
+        echo '  <div class="collapse navbar-collapse" id="navbarNav">';
+        echo '    <ul class="navbar-nav ml-auto">';
+        echo '      <li class="nav-item dropdown">';
+        echo '        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">';
+        echo '          ' . htmlspecialchars($_SESSION['user_email']) . '';
+        echo '        </a>';
+        echo '        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">';
+        echo '          <a class="dropdown-item" href="/eCommerce-Project/QuickStays/index.php?entity=login&action=logout">Log out</a>';
+        echo '          <a class="dropdown-item" href="/eCommerce-Project/QuickStays/index.php?entity=user&action=contact">Contact</a>';
+        echo '        </div>';
+        echo '      </li>';
+        echo '    </ul>';
+        echo '  </div>';
+        echo '</nav>';
+    } else {
+        // User is not logged in, show the Login and Sign up links
+        echo '<nav class="navbar navbar-expand-lg navbar-light bg-light">';
+        echo '  <a class="navbar-brand" href="/eCommerce-Project/QuickStays/Views/User/index.php">QuickStays</a>';
+        echo '  <div class="collapse navbar-collapse" id="navbarNav">';
+        echo '    <ul class="navbar-nav ml-auto">';
+        echo '      <li class="nav-item dropdown">';
+        echo '        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">';
+        echo '          Account';
+        echo '        </a>';
+        echo '        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">';
+        echo '          <a class="dropdown-item" href="/eCommerce-Project/QuickStays/index.php?entity=login&action=login">Login</a>';
+        echo '          <a class="dropdown-item" href="/eCommerce-Project/QuickStays/index.php?entity=user&action=register">Sign Up</a>';
+        echo '          <a class="dropdown-item" href="/eCommerce-Project/QuickStays/index.php?entity=user&action=contact">Contact</a>';
+        echo '          <a class="dropdown-item" href="/eCommerce-Project/QuickStays/index.php?entity=user&action=faq">FAQ</a>';
+        echo '        </div>';
+        echo '      </li>';
+        echo '    </ul>';
+        echo '  </div>';
+        echo '</nav>';
+    }
+    ?>
 
     <div class="container mt-5">
 <?php

@@ -83,6 +83,7 @@
         echo '        </a>';
         echo '        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">';
         echo '          <a class="dropdown-item" href="/eCommerce-Project/QuickStays/index.php?entity=login&action=logout">Log out</a>';
+        echo '          <a class="dropdown-item" href="/eCommerce-Project/QuickStays/index.php?entity=user&action=contact">Contact</a>';
         echo '        </div>';
         echo '      </li>';
         echo '    </ul>';
@@ -101,6 +102,7 @@
         echo '        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">';
         echo '          <a class="dropdown-item" href="/eCommerce-Project/QuickStays/index.php?entity=login&action=login">Login</a>';
         echo '          <a class="dropdown-item" href="/eCommerce-Project/QuickStays/index.php?entity=user&action=register">Sign Up</a>';
+        echo '          <a class="dropdown-item" href="/eCommerce-Project/QuickStays/index.php?entity=user&action=contact">Contact</a>';
         echo '          <a class="dropdown-item" href="/eCommerce-Project/QuickStays/index.php?entity=user&action=faq">FAQ</a>';
         echo '        </div>';
         echo '      </li>';
