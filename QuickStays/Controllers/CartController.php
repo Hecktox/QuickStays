@@ -85,5 +85,11 @@ class CartController
             echo "<p>Invalid Cart ID!</p>";
         }
     }
+
+    public function checkout()
+    {
+        include 'Views/Cart/checkout.php';
+    }
+
 }
 ?>
