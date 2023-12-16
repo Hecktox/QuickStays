@@ -9,7 +9,8 @@
 <?php
 session_start();
 
-if (!isset($_SESSION['admin_email'])) {
+if (!isset($_SESSION['user_email']) || $_SESSION['user_type'] !== 'Admin') {
+    // Redirect to the login page if the user isn't logged in or if the user isn't an admin
     header('Location: /eCommerce-Project/QuickStays/index.php?entity=user&action=index');
     exit();
 }

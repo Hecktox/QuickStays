@@ -5,6 +5,23 @@
  2095310
 -->
 
+<?php
+session_start();
+
+if (!isset($_SESSION['user_email']) || $_SESSION['user_type'] !== 'Admin') {
+    // Redirect to the login page if the user isn't logged in or if the user isn't an admin
+    header('Location: /eCommerce-Project/QuickStays/index.php?entity=user&action=index');
+    exit();
+} else if ($_SESSION['IsMaster'] !== 1) {
+    // Display a popup message and then redirects back to admin index if admin isn't a master
+    echo '<script>';
+    echo 'alert("You must be a master admin to access this page.");';
+    echo 'window.location.href = "/eCommerce-Project/QuickStays/index.php?entity=admin&action=index";';
+    echo '</script>';
+    exit();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 

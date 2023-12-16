@@ -107,8 +107,7 @@ class AdminController
             $adminModel = new AdminModel();
             $adminModel->addAdmin($firstName, $lastName, $email, $password, $isMaster);
 
-            // Redirect to the login page after registration
-            header('Location: /eCommerce-Project/QuickStays/index.php?entity=login&action=login');
+            header('Location: /eCommerce-Project/QuickStays/index.php?entity=admin&action=index');
             exit();
         } else {
             include 'Views/Admin/register.php';

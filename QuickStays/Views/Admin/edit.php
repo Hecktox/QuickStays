@@ -10,8 +10,16 @@
 <?php
 session_start();
 
-if (!isset($_SESSION['admin_email'])) {
+if (!isset($_SESSION['user_email']) || $_SESSION['user_type'] !== 'Admin') {
+    // Redirect to the login page if the user isn't logged in or if the user isn't an admin
     header('Location: /eCommerce-Project/QuickStays/index.php?entity=user&action=index');
+    exit();
+} else if ($_SESSION['IsMaster'] !== 1) {
+    // Display a popup message and then redirects back to admin index if admin isn't a master
+    echo '<script>';
+    echo 'alert("You must be a master admin to access this page.");';
+    echo 'window.location.href = "/eCommerce-Project/QuickStays/index.php?entity=admin&action=index";';
+    echo '</script>';
     exit();
 }
 ?>
@@ -50,7 +58,7 @@ if (!isset($_SESSION['admin_email'])) {
                 <h1 class="mb-4 text-center">Edit Admin</h1>
                 <form method="POST" action="/eCommerce-Project/QuickStays/index.php?entity=admin&action=edit"
                     class="bg-white p-3 border rounded">
-                    <input type="hidden" name="adminID" value="<?php echo $admin['AdminID']; ?>">
+                    <input type="hidden" name="adminID" value="<?php echo $admin['UserID']; ?>">
 
                     <div class="form-group">
                         <label for="firstName">First Name:</label>

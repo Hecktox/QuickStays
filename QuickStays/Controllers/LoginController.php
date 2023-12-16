@@ -12,27 +12,40 @@ class LoginController
 {
     public function login()
     {
-        $errorMessage = ''; // Initialize an empty error message
+        $errorMessage = '';
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login'])) {
             $email = $_POST['email'];
             $password = $_POST['password'];
             $loginModel = new LoginModel();
 
-            $user = $loginModel->loginUser($email, $password);
-            $admin = $loginModel->loginAdmin($email, $password);
+            $userOrAdmin = $loginModel->login($email, $password);
 
-            if ($user) {
+            if ($userOrAdmin) {
                 session_start();
-                $_SESSION['user_id'] = $user['UserID'];
-                $_SESSION['user_email'] = $user['Email'];
-                header('Location: /eCommerce-Project/QuickStays/index.php?entity=user&action=index');
-                exit();
-            } elseif ($admin) {
-                session_start();
-                $_SESSION['admin_id'] = $admin['AdminID'];
-                $_SESSION['admin_email'] = $admin['Email'];
-                header('Location: /eCommerce-Project/QuickStays/index.php?entity=admin&action=index');
+                $_SESSION['user_id'] = $userOrAdmin['UserID'];
+                $_SESSION['user_email'] = $userOrAdmin['Email'];
+
+                // Check the UserType and set it in the session
+                if ($userOrAdmin['UserType'] === 'Host') {
+                    $_SESSION['user_type'] = 'Host';
+                } elseif ($userOrAdmin['UserType'] === 'Traveler') {
+                    $_SESSION['user_type'] = 'Traveler';
+                } else {
+                    // UserType is null, indicating an admin
+                    $_SESSION['user_type'] = 'Admin';
+
+                    // Set IsMaster in the session if it exists in the userOrAdmin array
+                    if (isset($userOrAdmin['IsMaster'])) {
+                        $_SESSION['IsMaster'] = $userOrAdmin['IsMaster'];
+                    }
+                }
+                
+                if ($_SESSION['user_type'] === 'Admin') {
+                    header('Location: /eCommerce-Project/QuickStays/index.php?entity=admin&action=index');
+                } else {
+                    header('Location: /eCommerce-Project/QuickStays/index.php?entity=user&action=index');
+                }
                 exit();
             } else {
                 // Invalid login credentials, set the error message
@@ -52,4 +65,3 @@ class LoginController
     }
 }
 ?>
-
