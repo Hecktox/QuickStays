@@ -134,29 +134,42 @@
                 <!-- First group of three items -->
                 <div class="carousel-item active">
                     <div class="row">
+                        <!-- Apartment -->
                         <div class="col-md-4">
-                            <img src="/eCommerce-Project/QuickStays/images/whiteHouse.jpg" class="d-block w-100"
-                                alt="Town House">
-                            <div class="carousel-caption d-none d-md-block">
-                                <h5>Town House</h5>
-                            </div>
+                            <a
+                                href="/eCommerce-Project/QuickStays/index.php?entity=property&action=search&propertyType=Apartment">
+                                <img src="/eCommerce-Project/QuickStays/images/whiteHouse.jpg" class="d-block w-100"
+                                    alt="Apartment">
+                                <div class="carousel-caption d-none d-md-block">
+                                    <h5>Apartment</h5>
+                                </div>
+                            </a>
                         </div>
+                        <!-- Condo -->
                         <div class="col-md-4">
-                            <img src="/eCommerce-Project/QuickStays/images/luxuryHousee.jpg" class="d-block w-100"
-                                alt="Luxury House">
-                            <div class="carousel-caption d-none d-md-block">
-                                <h5>Luxury House</h5>
-                            </div>
+                            <a
+                                href="/eCommerce-Project/QuickStays/index.php?entity=property&action=search&propertyType=Condo">
+                                <img src="/eCommerce-Project/QuickStays/images/luxuryHousee.jpg" class="d-block w-100"
+                                    alt="Condo">
+                                <div class="carousel-caption d-none d-md-block">
+                                    <h5>Condo</h5>
+                                </div>
+                            </a>
                         </div>
+                        <!-- House -->
                         <div class="col-md-4">
-                            <img src="/eCommerce-Project/QuickStays/images/beachHouse.jpg" class="d-block w-100"
-                                alt="Beach House">
-                            <div class="carousel-caption d-none d-md-block">
-                                <h5>Beach House</h5>
-                            </div>
+                            <a
+                                href="/eCommerce-Project/QuickStays/index.php?entity=property&action=search&propertyType=House">
+                                <img src="/eCommerce-Project/QuickStays/images/beachHouse.jpg" class="d-block w-100"
+                                    alt="House">
+                                <div class="carousel-caption d-none d-md-block">
+                                    <h5>House</h5>
+                                </div>
+                            </a>
                         </div>
                     </div>
                 </div>
+
                 <!-- 2nd group of items-->
                 <div class="carousel-item">
                     <div class="row">
@@ -246,10 +259,22 @@
         <div class="container  mt-4">
             <div class="row">
                 <div class="col-12">
-                <h2>Discover millions of rental options with QuickStays</h2>
-            <p>For many travellers, a hotel just doesn’t cut it for a family trip or romantic couple’s retreat. Fortunately, QuickStays offers a diverse range of different vacation rentals that are suitable for all destinations and lifestyles, from idyllic cottages and quiet mountain chalets to waterfront homes and lakeside cabins. A world of possibilities awaits with a quick QuickStays property search, which shows you a list of millions of property rentals from private homeowners all over the world. Once you find your dream rental in your favourite destination, you can quickly and securely book the property to get your vacation planning started.</p>
-            <h3>What can a vacation rental do for you?</h3>
-            <p>Whether you’re embarking on a thrill-seeking excursion or looking for a quiet couple’s trip by the sea, vacation rentals are available in virtually every size and type. You can find cottages, cabins, lodges, houses, apartments, and more, all with a range of amenities to help you make the most of your trip. With a vacation rental, you can enjoy features like pet-friendly yards or gardens, pools and hot tubs, outdoor grilling, and entertainment space, all in the comfort of your own home-away-from-home. Best of all, you can find rentals for virtually any budget, with amenities that help you save, such as kitchens and entertainment features.</p>
+                    <h2>Discover millions of rental options with QuickStays</h2>
+                    <p>For many travellers, a hotel just doesn’t cut it for a family trip or romantic couple’s retreat.
+                        Fortunately, QuickStays offers a diverse range of different vacation rentals that are suitable
+                        for all destinations and lifestyles, from idyllic cottages and quiet mountain chalets to
+                        waterfront homes and lakeside cabins. A world of possibilities awaits with a quick QuickStays
+                        property search, which shows you a list of millions of property rentals from private homeowners
+                        all over the world. Once you find your dream rental in your favourite destination, you can
+                        quickly and securely book the property to get your vacation planning started.</p>
+                    <h3>What can a vacation rental do for you?</h3>
+                    <p>Whether you’re embarking on a thrill-seeking excursion or looking for a quiet couple’s trip by
+                        the sea, vacation rentals are available in virtually every size and type. You can find cottages,
+                        cabins, lodges, houses, apartments, and more, all with a range of amenities to help you make the
+                        most of your trip. With a vacation rental, you can enjoy features like pet-friendly yards or
+                        gardens, pools and hot tubs, outdoor grilling, and entertainment space, all in the comfort of
+                        your own home-away-from-home. Best of all, you can find rentals for virtually any budget, with
+                        amenities that help you save, such as kitchens and entertainment features.</p>
 
                 </div>
 

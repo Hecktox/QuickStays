@@ -109,34 +109,58 @@ class PropertyController
     }
 
     public function search()
-    {
-        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['search'])) {
-            $destination = $_POST['destination'];
-            $date = $_POST['date'];
-            $guests = $_POST['guests'];
+{
+    $propertyModel = new PropertyModel();
 
-            $propertyModel = new PropertyModel();
-            $searchResults = $propertyModel->searchProperties($destination, $date, $guests);
+    // Check if the search is triggered by the property type (e.g., from the carousel)
+    if (isset($_GET['propertyType'])) {
+        $propertyType = $_GET['propertyType'];
 
-            $imageFilenames = [];
+        // Search properties by type
+        $searchResults = $propertyModel->searchPropertiesByType($propertyType);
 
-            foreach ($searchResults as &$property) {
-                $propertyID = $property['PropertyID'];
-                $imageFolder = "images/property/$propertyID";
-                $thumbnail = "$imageFolder/1.jpg";
-                $imageFilenames[$propertyID] = $thumbnail;
-                $averageRating = $propertyModel->getAverageRatingForProperty($propertyID);
-                $property['AverageRating'] = $averageRating;
-            }
-
-            unset($property);
-
-            include 'Views/Property/index.php';
-        } else {
-            header('Location: /eCommerce-Project/QuickStays/index.php?entity=property&action=list');
-            exit();
+        $imageFilenames = [];
+        foreach ($searchResults as &$property) {
+            $propertyID = $property['PropertyID'];
+            $imageFolder = "images/property/$propertyID";
+            $thumbnail = "$imageFolder/1.jpg";
+            $imageFilenames[$propertyID] = $thumbnail;
+            $averageRating = $propertyModel->getAverageRatingForProperty($propertyID);
+            $property['AverageRating'] = $averageRating;
         }
+        unset($property);
+
+        // Include the view file that displays the properties
+        include 'Views/Property/index.php'; // Ensure this view file exists and is correctly named
     }
+    // Handle other search criteria
+    else if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['search'])) {
+        $destination = $_POST['destination'];
+        $date = $_POST['date'];
+        $guests = $_POST['guests'];
+
+        $searchResults = $propertyModel->searchProperties($destination, $date, $guests);
+
+        // Prepare additional data required for the view
+        $imageFilenames = [];
+        foreach ($searchResults as &$property) {
+            $propertyID = $property['PropertyID'];
+            $imageFolder = "images/property/$propertyID";
+            $thumbnail = "$imageFolder/1.jpg";
+            $imageFilenames[$propertyID] = $thumbnail;
+            $averageRating = $propertyModel->getAverageRatingForProperty($propertyID);
+            $property['AverageRating'] = $averageRating;
+        }
+        unset($property);
+
+        // Include the view file that displays the properties
+        include 'Views/Property/index.php'; // Ensure this view file exists and is correctly named
+    } else {
+        // Redirect to the main property list if the search is not properly triggered
+        header('Location: /eCommerce-Project/QuickStays/index.php?entity=property&action=list');
+        exit();
+    }
+}
 
 
     public function book()

@@ -101,6 +101,14 @@ class PropertyModel
         return $query->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    public function searchPropertiesByType($propertyType)
+{
+    global $db;
+    $query = $db->prepare("SELECT * FROM Properties WHERE PropertyType = ?");
+    $query->execute([$propertyType]);
+    return $query->fetchAll(PDO::FETCH_ASSOC);
+}
+
     public function getAverageRatingForProperty($propertyID)
     {
         global $db;
