@@ -7,8 +7,6 @@
  2033640
 -->
 
-
-
 <!DOCTYPE html>
 <html>
 
@@ -64,6 +62,23 @@
         .service-box:hover {
             transform: translateY(-5px);
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .custom-btn {
+            background-color: #4CAF50;
+            color: #fff;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 8px;
+            font-size: 18px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            text-decoration: none;
+        }
+
+        .custom-btn:hover {
+            background-color: #ffff;
+            color: #4CAF50;
+            text-decoration: none;
         }
     </style>
 </head>
@@ -124,6 +139,15 @@
                     aria-label="Number of Guests">
                 <button class="btn btn-outline-success my-2 my-sm-0" type="submit" name="search">Search</button>
             </form>
+        </div>
+        <div class="text-center mt-4">
+            <?php
+            if (isset($_SESSION['user_email']) && $_SESSION['user_type'] === 'Host') {
+                echo '<a href="/eCommerce-Project/QuickStays/index.php?entity=property&action=host" class="custom-btn">Host a Property</a>';
+            } else if (isset($_SESSION['user_email']) && $_SESSION['user_type'] === 'Admin') {
+                echo '<a href="/eCommerce-Project/QuickStays/index.php?entity=admin&action=index" class="custom-btn">Admin Page</a>';
+            }
+            ?>
         </div>
     </div>
 

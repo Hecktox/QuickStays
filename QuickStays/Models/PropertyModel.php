@@ -119,26 +119,45 @@ class PropertyModel
     }
 
     public function getReviewsByPropertyId($propertyId)
-{
-    global $db;
-    $query = $db->prepare("SELECT Reviews.Rating, Reviews.Comment, Users.FirstName, Users.LastName 
+    {
+        global $db;
+        $query = $db->prepare("SELECT Reviews.Rating, Reviews.Comment, Users.FirstName, Users.LastName 
                             FROM Reviews 
                             JOIN Users ON Reviews.UserID = Users.UserID 
                             WHERE Reviews.PropertyID = ?");
-    $query->execute([$propertyId]);
-    return $query->fetchAll(PDO::FETCH_ASSOC);
-}
+        $query->execute([$propertyId]);
+        return $query->fetchAll(PDO::FETCH_ASSOC);
+    }
 
-    public function hasUserBookedProperty($userId, $propertyId) {
+    public function hasUserBookedProperty($userId, $propertyId)
+    {
         global $db; // Ensure you have a database connection variable $db
         $query = $db->prepare("SELECT COUNT(*) FROM Bookings WHERE UserID = ? AND PropertyID = ? AND Status = 'Confirmed'");
         $query->execute([$userId, $propertyId]);
         return $query->fetchColumn() > 0;
     }
 
+    public function hostProperty($PropertyName, $Country, $City, $Province, $StreetAddress, $Description, $PropertyType, $NumRooms, $NumBathrooms, $AvailabilityDate, $PricePerNight, $images)
+    {
+        global $db;
 
+        // Use the existing addProperty function to add basic property information
+        $this->addProperty($PropertyName, $Country, $City, $Province, $StreetAddress, $Description, $PropertyType, $NumRooms, $NumBathrooms, $AvailabilityDate, $PricePerNight);
+
+        // Get the property ID of the newly added property
+        $propertyID = $db->lastInsertId();
+
+        // Handle image uploads and naming
+        for ($i = 1; $i <= 3; $i++) {
+            $imageField = "Image$i";
+            if (isset($images[$imageField]) && !empty($images[$imageField]['name'])) {
+                $imageName = "$i.jpg";
+                $imagePath = "images/property/$propertyID/$imageName";
+                move_uploaded_file($images[$imageField]['tmp_name'], $imagePath);
+            }
+        }
+
+        return $propertyID;
+    }
 }
-
-
-
 ?>

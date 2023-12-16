@@ -177,7 +177,7 @@ class PropertyController
                 for ($i = 1; $i <= 3; $i++) {
                     $imageFilenames[] = "$imageFolder/$i.jpg";
                 }
-                
+
                 include 'Views/Property/book.php';
             } else {
                 echo "<p>Property not found!</p>";
@@ -187,5 +187,34 @@ class PropertyController
         }
     }
 
+    public function host()
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['hostProperty'])) {
+            $PropertyName = $_POST['PropertyName'];
+            $Country = $_POST['Country'];
+            $City = $_POST['City'];
+            $Province = $_POST['Province'];
+            $StreetAddress = $_POST['StreetAddress'];
+            $Description = $_POST['Description'];
+            $PropertyType = $_POST['PropertyType'];
+            $NumRooms = $_POST['NumRooms'];
+            $NumBathrooms = $_POST['NumBathrooms'];
+            $AvailabilityDate = $_POST['AvailabilityDate'];
+            $PricePerNight = $_POST['PricePerNight'];
+
+            $images = $_FILES;
+
+            $propertyModel = new PropertyModel();
+
+            // Get the property ID of the newly added property
+            $propertyID = $propertyModel->hostProperty($PropertyName, $Country, $City, $Province, $StreetAddress, $Description, $PropertyType, $NumRooms, $NumBathrooms, $AvailabilityDate, $PricePerNight, $images);
+
+            // Redirect to the "book" action with the property ID
+            header("Location: /eCommerce-Project/QuickStays/index.php?entity=property&action=book&PropertyID=$propertyID");
+            exit();
+        } else {
+            include 'Views/Property/host.php';
+        }
+    }
 }
 ?>

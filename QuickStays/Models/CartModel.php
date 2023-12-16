@@ -46,4 +46,12 @@ class CartModel
         $query = $db->prepare("DELETE FROM Cart WHERE CartID = ?");
         $query->execute([$cartID]);
     }
+
+    public function getCartsByUserID($userID)
+    {
+        global $db;
+        $query = $db->prepare("SELECT * FROM Cart WHERE UserID = ?");
+        $query->execute([$userID]);
+        return $query->fetchAll(PDO::FETCH_ASSOC);
+    }
 }
