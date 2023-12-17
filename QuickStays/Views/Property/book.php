@@ -27,7 +27,7 @@
 </head>
 
 <body>
-<?php
+    <?php
     session_start();
     require_once 'Models/PropertyModel.php';
     if (isset($_SESSION['user_email'])) {
@@ -70,8 +70,8 @@
     }
     ?>
 
-<?php 
-    
+    <?php
+
     ?>
 
     <div class="container my-4">
@@ -113,10 +113,8 @@
             <!-- Booking Form -->
             <div class="mt-4">
                 <h3>Book Your Stay</h3>
-                <form method="POST" action="/eCommerce-Project/QuickStays/index.php?entity=booking&action=book">
-                    <input type="hidden" name="propertyID" value="<?php echo $property['PropertyID']; ?>">
-
-                    <!-- Date Selection -->
+                <form method="POST"
+                    action="/eCommerce-Project/QuickStays/index.php?entity=booking&action=book&PropertyID=<?php echo $property['PropertyID']; ?>">
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label for="checkInDate">Check-In Date:</label>
@@ -128,18 +126,11 @@
                         </div>
                     </div>
 
-                    <!-- Guest Selection -->
-                    <div class="form-group">
-                        <label for="guests">Guests:</label>
-                        <select class="form-control" id="guests" name="guests">
-                            <!-- PHP code to generate guest options -->
-                        </select>
-                    </div>
-
-                    <!-- Booking Button -->
-                    <button type="submit" class="btn btn-primary">Book Property</button>
+                    <button type="submit" class="btn btn-primary" name="bookProperty">Book Property</button>
                 </form>
             </div>
+
+
         <?php else: ?>
             <div class="alert alert-warning" role="alert">
                 Property not found.
@@ -147,78 +138,86 @@
         <?php endif; ?>
 
         <!-- Reviews Section -->
-<div class="reviews-section mt-4">
-    <h3>Guest Reviews</h3>
+        <div class="reviews-section mt-4">
+            <h3>Guest Reviews</h3>
 
-    <?php
-    $propertyModel = new PropertyModel();
-    $reviews = $propertyModel->getReviewsByPropertyId($property['PropertyID']);
-    $userId = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : null;
+            <?php
+            $propertyModel = new PropertyModel();
+            $reviews = $propertyModel->getReviewsByPropertyId($property['PropertyID']);
+            $userId = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : null;
 
-    // Check if the user is logged in and has booked the property
-    if ($userId && $propertyModel->hasUserBookedProperty($userId, $property['PropertyID'])):
-        ?>
-        <!-- Review Submission Form -->
-        <div class="review-form mt-4">
-            <h4>Add Your Review</h4>
-            <form method="POST" action="/eCommerce-Project/QuickStays/index.php?entity=review&action=add" class="bg-white p-3 border rounded">
-                    <div class="form-group">
-                        <label for="PropertyID">Property ID:</label>
-                        <input type="number" class="form-control" name="PropertyID" required>
+            // Check if the user is logged in and has booked the property
+            if ($userId && $propertyModel->hasUserBookedProperty($userId, $property['PropertyID'])):
+                ?>
+                <!-- Review Submission Form -->
+                <div class="review-form mt-4">
+                    <h4>Add Your Review</h4>
+                    <form method="POST" action="/eCommerce-Project/QuickStays/index.php?entity=review&action=add"
+                        class="bg-white p-3 border rounded">
+                        <div class="form-group">
+                            <label for="PropertyID">Property ID:</label>
+                            <input type="number" class="form-control" name="PropertyID" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="UserID">User ID:</label>
+                            <input type="number" class="form-control" name="UserID" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="Rating">Rating:</label>
+                            <input type="number" step="0.1" class="form-control" name="Rating" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="Comment">Comment:</label>
+                            <textarea class="form-control" name="Comment" required></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <input type="submit" class="btn btn-primary" name="addReview" value="Add Review">
+                            <button type="button" class="btn btn-secondary"
+                                onclick="window.location.href='/eCommerce-Project/QuickStays/index.php?entity=review&action=list'">Cancel</button>
+                        </div>
+                    </form>
+                </div>
+            <?php endif; ?>
+
+            <!-- Displaying Existing Reviews -->
+            <?php if (!empty($reviews)): ?>
+                <?php foreach ($reviews as $review): ?>
+                    <div class="review">
+                        <p><strong>
+                                <?php echo htmlspecialchars($review['FirstName']) . ' ' . htmlspecialchars($review['LastName']); ?>:
+                            </strong>
+                            <?php echo htmlspecialchars($review['Comment']); ?>
+                        </p>
+                        <p>Rating:
+                            <?php echo htmlspecialchars($review['Rating']); ?>/5
+                        </p>
                     </div>
-
-                    <div class="form-group">
-                        <label for="UserID">User ID:</label>
-                        <input type="number" class="form-control" name="UserID" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="Rating">Rating:</label>
-                        <input type="number" step="0.1" class="form-control" name="Rating" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="Comment">Comment:</label>
-                        <textarea class="form-control" name="Comment" required></textarea>
-                    </div>
-
-                    <div class="form-group">
-                        <input type="submit" class="btn btn-primary" name="addReview" value="Add Review">
-                        <button type="button" class="btn btn-secondary" onclick="window.location.href='/eCommerce-Project/QuickStays/index.php?entity=review&action=list'">Cancel</button>
-                    </div>
-                </form>
+                <?php endforeach; ?>
+            <?php else: ?>
+                <p>No reviews yet.</p>
+            <?php endif; ?>
         </div>
-    <?php endif; ?>
-
-    <!-- Displaying Existing Reviews -->
-    <?php if (!empty($reviews)): ?>
-        <?php foreach ($reviews as $review): ?>
-            <div class="review">
-                <p><strong><?php echo htmlspecialchars($review['FirstName']) . ' ' . htmlspecialchars($review['LastName']); ?>:</strong> <?php echo htmlspecialchars($review['Comment']); ?></p>
-                <p>Rating: <?php echo htmlspecialchars($review['Rating']); ?>/5</p>
-            </div>
-        <?php endforeach; ?>
-    <?php else: ?>
-        <p>No reviews yet.</p>
-    <?php endif; ?>
-</div>
-
-    
 
 
 
 
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script
-        src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
-    <script>
-        $('.datepicker').datepicker({
-            format: 'yyyy-mm-dd',
-            autoclose: true,
-        });
-    </script>
+
+
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+        <script>
+            $('.datepicker').datepicker({
+                format: 'yyyy-mm-dd',
+                autoclose: true,
+            });
+        </script>
 </body>
 
 <footer class="bg-light text-center text-lg-start mt-5">

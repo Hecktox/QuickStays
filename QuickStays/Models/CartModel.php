@@ -54,4 +54,20 @@ class CartModel
         $query->execute([$userID]);
         return $query->fetchAll(PDO::FETCH_ASSOC);
     }
+
+    public function getPendingBookingsByUserID($userID)
+    {
+        global $db;
+        $query = $db->prepare("SELECT * FROM Bookings WHERE UserID = ? AND Status = 'Pending'");
+        $query->execute([$userID]);
+        return $query->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function updateBookingStatus($bookingID, $status)
+    {
+        global $db;
+        $query = $db->prepare("UPDATE Bookings SET Status = ? WHERE BookingID = ?");
+        $query->execute([$status, $bookingID]);
+    }
+
 }

@@ -86,57 +86,87 @@ class CartController
         }
     }
 
-    public function checkout()
+    public function index()
     {
         session_start();
+        if (isset($_SESSION['user_id'])) {
+            $userID = $_SESSION['user_id'];
+            $cartModel = new CartModel();
 
-        // Check if the user is logged in
-        if (!isset($_SESSION['user_id'])) {
+            // Retrieve the user's pending bookings using the new function
+            $carts = $cartModel->getPendingBookingsByUserID($userID);
+
+            // Calculate the total price
+            $totalPrice = 0;
+            foreach ($carts as $cart) {
+                $totalPrice += $cart['TotalPrice'];
+            }
+
+            include 'Views/Cart/index.php';
+        } else {
+            // User is not logged in, you can handle this case as needed
             // Redirect to the login page or display an error message
             header('Location: /eCommerce-Project/QuickStays/index.php?entity=login&action=login');
             exit();
         }
-
-        $userID = $_SESSION['user_id'];
-
-        // Fetch the user's cart items from the database using the user ID
-        $cartModel = new CartModel();
-        $cartItems = $cartModel->getCartsByUserID($userID);
-
-        // Load the checkout view with the cart items
-        include 'Views/Cart/checkout.php';
     }
 
-
-    public function processCheckout()
+    public function checkout()
     {
-        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['checkout_submit'])) {
-            // Here, you can add code to process the payment and create a booking record in the database.
-            // You'll need to handle the payment processing logic using a mock payment API or a real payment gateway.
-            // Once the payment is successful, create a booking record and remove items from the cart.
+        session_start();
 
-            // Example:
-            $cardNumber = $_POST['card_number'];
-            $expirationDate = $_POST['expiration_date'];
-            $cvv = $_POST['cvv'];
-
-            // Process the payment using the mock payment API or a real payment gateway.
-
-            // Create a booking record in the database.
-            $userID = $_SESSION['UserID']; // You may need to retrieve the user ID from the session.
-            $propertyID = $_SESSION['PropertyID']; // You may need to retrieve the property ID from the session.
-            $bookingDate = date("Y-m-d"); // Use the current date as the booking date.
-
+        if (isset($_SESSION['user_id'])) {
+            $userID = $_SESSION['user_id'];
             $cartModel = new CartModel();
-            $cartModel->addCart($userID, $propertyID, $bookingDate);
 
-            // Redirect to a success page or display a success message.
-            header('Location: /eCommerce-Project/QuickStays/index.php?entity=cart&action=checkoutSuccess');
+            // Calculate the current date and time
+            $currentDate = date('Y-m-d H:i:s'); // Format as needed
+
+            // Retrieve the user's pending bookings
+            $pendingBookings = $cartModel->getPendingBookingsByUserID($userID);
+
+            foreach ($pendingBookings as $booking) {
+                // Update the status of the booking to "Confirmed"
+                $bookingID = $booking['BookingID'];
+                $cartModel->updateBookingStatus($bookingID, 'Confirmed');
+
+                // Add the booking with the current date to the cart table
+                $propertyID = $booking['PropertyID'];
+                $cartModel->addCart($userID, $propertyID, $currentDate);
+            }
+
+            // Redirect to the cart page after checkout
+            header('Location: /eCommerce-Project/QuickStays/index.php?entity=cart&action=success');
             exit();
         } else {
-            // Handle invalid checkout request.
-            echo "<p>Invalid Checkout Request!</p>";
+            // User is not logged in, handle as needed
+            header('Location: /eCommerce-Project/QuickStays/index.php?entity=login&action=login');
+            exit();
         }
+    }
+
+    public function history()
+    {
+        session_start();
+
+        if (isset($_SESSION['user_id'])) {
+            $userID = $_SESSION['user_id'];
+            $cartModel = new CartModel();
+
+            // Retrieve the user's booking history (cart entries)
+            $bookingHistory = $cartModel->getCartsByUserID($userID);
+
+            include 'Views/Cart/history.php'; // Create the history view
+        } else {
+            // User is not logged in, handle as needed
+            header('Location: /eCommerce-Project/QuickStays/index.php?entity=login&action=login');
+            exit();
+        }
+    }
+
+    public function success()
+    {
+        include 'Views/Cart/success.php';
     }
 }
 ?>

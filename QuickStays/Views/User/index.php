@@ -84,7 +84,7 @@
 </head>
 
 <body>
-    <?php
+<?php
     session_start();
     // Check if the user is logged in
     if (isset($_SESSION['user_email'])) {
@@ -100,6 +100,10 @@
         echo '          <a class="dropdown-item" href="/eCommerce-Project/QuickStays/index.php?entity=login&action=logout">Log out</a>';
         echo '          <a class="dropdown-item" href="/eCommerce-Project/QuickStays/index.php?entity=user&action=contact">Contact</a>';
         echo '        </div>';
+        echo '      </li>';
+        // Add Cart button here
+        echo '      <li class="nav-item">';
+        echo '        <a class="nav-link" href="/eCommerce-Project/QuickStays/index.php?entity=cart&action=index">Cart</a>';
         echo '      </li>';
         echo '    </ul>';
         echo '  </div>';
@@ -120,6 +124,10 @@
         echo '          <a class="dropdown-item" href="/eCommerce-Project/QuickStays/index.php?entity=user&action=contact">Contact</a>';
         echo '          <a class="dropdown-item" href="/eCommerce-Project/QuickStays/index.php?entity=user&action=faq">FAQ</a>';
         echo '        </div>';
+        echo '      </li>';
+        // Add Cart button here
+        echo '      <li class="nav-item">';
+        echo '        <a class="nav-link" href="/eCommerce-Project/QuickStays/index.php?entity=cart&action=index">Cart</a>';
         echo '      </li>';
         echo '    </ul>';
         echo '  </div>';

@@ -46,5 +46,24 @@ class BookingModel
         $query = $db->prepare("DELETE FROM Bookings WHERE BookingID = ?");
         $query->execute([$bookingID]);
     }
+
+    public function calculateTotalPrice($propertyID, $checkInDate, $checkOutDate)
+    {
+        global $db;
+        $query = $db->prepare("SELECT PricePerNight FROM Properties WHERE PropertyID = ?");
+        $query->execute([$propertyID]);
+        $property = $query->fetch(PDO::FETCH_ASSOC);
+
+        if ($property) {
+            $pricePerNight = $property['PricePerNight'];
+            $datetime1 = new DateTime($checkInDate);
+            $datetime2 = new DateTime($checkOutDate);
+            $interval = $datetime1->diff($datetime2);
+            $numNights = $interval->format('%a');
+            return $pricePerNight * $numNights;
+        }
+
+        return 0;
+    }
 }
 ?>

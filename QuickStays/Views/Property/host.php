@@ -2,6 +2,16 @@
 <html lang="en">
 <html>
 
+<?php
+session_start();
+
+if (!isset($_SESSION['user_email']) || $_SESSION['user_type'] !== 'Host') {
+    // Redirect to the login page if the user isn't logged in or if the user isn't a host
+    header('Location: /eCommerce-Project/QuickStays/index.php?entity=user&action=index');
+    exit();
+}
+?>
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
