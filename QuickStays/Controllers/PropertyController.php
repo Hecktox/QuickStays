@@ -116,7 +116,6 @@ class PropertyController
     if (isset($_GET['propertyType'])) {
         $propertyType = $_GET['propertyType'];
 
-        // Search properties by type
         $searchResults = $propertyModel->searchPropertiesByType($propertyType);
 
         $imageFilenames = [];
@@ -130,8 +129,7 @@ class PropertyController
         }
         unset($property);
 
-        // Include the view file that displays the properties
-        include 'Views/Property/index.php'; // Ensure this view file exists and is correctly named
+        include 'Views/Property/index.php'; 
     }
     // Handle other search criteria
     else if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['search'])) {
@@ -153,8 +151,7 @@ class PropertyController
         }
         unset($property);
 
-        // Include the view file that displays the properties
-        include 'Views/Property/index.php'; // Ensure this view file exists and is correctly named
+        include 'Views/Property/index.php'; 
     } else {
         // Redirect to the main property list if the search is not properly triggered
         header('Location: /eCommerce-Project/QuickStays/index.php?entity=property&action=list');
@@ -171,7 +168,6 @@ class PropertyController
             $property = $propertyModel->getPropertyByID($propertyID);
 
             if ($property) {
-                // Get image filenames for the property
                 $imageFilenames = [];
                 $imageFolder = "images/property/$propertyID";
                 for ($i = 1; $i <= 3; $i++) {
