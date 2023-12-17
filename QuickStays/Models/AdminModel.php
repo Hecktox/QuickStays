@@ -1,9 +1,3 @@
-<!--
- E-Commerce 
- Team Project
- Maximus Taube
- 2095310
--->
 
 <?php
 require_once 'db_connect.php';

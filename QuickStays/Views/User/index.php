@@ -1,11 +1,3 @@
-<!--
- E-Commerce 
- Team Project
- Maximus Taube
- 2095310
- Philippe Ton-That
- 2033640
--->
 
 <!DOCTYPE html>
 <html>
@@ -86,7 +78,7 @@
 <body>
 <?php
     session_start();
-    // Check if the user is logged in
+    
     if (isset($_SESSION['user_email'])) {
         echo '<nav class="navbar navbar-expand-lg navbar-light bg-light">';
         echo '  <a class="navbar-brand" href="/eCommerce-Project/QuickStays">QuickStays</a>';
@@ -101,7 +93,7 @@
         echo '          <a class="dropdown-item" href="/eCommerce-Project/QuickStays/index.php?entity=user&action=contact">Contact</a>';
         echo '        </div>';
         echo '      </li>';
-        // Add Cart button here
+        
         echo '      <li class="nav-item">';
         echo '        <a class="nav-link" href="/eCommerce-Project/QuickStays/index.php?entity=cart&action=index">Cart</a>';
         echo '      </li>';
@@ -109,7 +101,7 @@
         echo '  </div>';
         echo '</nav>';
     } else {
-        // User is not logged in, show the Login and Sign up links
+        
         echo '<nav class="navbar navbar-expand-lg navbar-light bg-light">';
         echo '  <a class="navbar-brand" href="/eCommerce-Project/QuickStays/Views/User/index.php">QuickStays</a>';
         echo '  <div class="collapse navbar-collapse" id="navbarNav">';
@@ -125,7 +117,7 @@
         echo '          <a class="dropdown-item" href="/eCommerce-Project/QuickStays/index.php?entity=user&action=faq">FAQ</a>';
         echo '        </div>';
         echo '      </li>';
-        // Add Cart button here
+        
         echo '      <li class="nav-item">';
         echo '        <a class="nav-link" href="/eCommerce-Project/QuickStays/index.php?entity=cart&action=index">Cart</a>';
         echo '      </li>';
@@ -163,10 +155,10 @@
         <h2>Find spaces that suit your style</h2>
         <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
             <div class="carousel-inner">
-                <!-- First group of three items -->
+                
                 <div class="carousel-item active">
                     <div class="row">
-                        <!-- Apartment -->
+                        
                         <div class="col-md-4">
                             <a
                                 href="/eCommerce-Project/QuickStays/index.php?entity=property&action=search&propertyType=Apartment">
@@ -177,7 +169,7 @@
                                 </div>
                             </a>
                         </div>
-                        <!-- Condo -->
+                        
                         <div class="col-md-4">
                             <a
                                 href="/eCommerce-Project/QuickStays/index.php?entity=property&action=search&propertyType=Condo">
@@ -188,7 +180,7 @@
                                 </div>
                             </a>
                         </div>
-                        <!-- House -->
+                        
                         <div class="col-md-4">
                             <a
                                 href="/eCommerce-Project/QuickStays/index.php?entity=property&action=search&propertyType=House">
@@ -202,10 +194,10 @@
                     </div>
                 </div>
 
-                <!-- 2nd group of items -->
+                
                 <div class="carousel-item">
                     <div class="row">
-                        <!-- Cottage -->
+                        
                         <div class="col-md-4">
                             <a
                                 href="/eCommerce-Project/QuickStays/index.php?entity=property&action=search&propertyType=House">
@@ -216,7 +208,7 @@
                                 </div>
                             </a>
                         </div>
-                        <!-- Penthouse -->
+                        
                         <div class="col-md-4">
                             <a
                                 href="/eCommerce-Project/QuickStays/index.php?entity=property&action=search&propertyType=Condo">
@@ -227,7 +219,7 @@
                                 </div>
                             </a>
                         </div>
-                        <!-- Luxury Apartment -->
+                        
                         <div class="col-md-4">
                             <a
                                 href="/eCommerce-Project/QuickStays/index.php?entity=property&action=search&propertyType=Apartment">
@@ -241,7 +233,7 @@
                     </div>
                 </div>
 
-                <!-- Carousel Controls -->
+                
                 <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="prev">
                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                     <span class="sr-only">Previous</span>
@@ -252,7 +244,7 @@
                 </a>
             </div>
         </div>
-        <!-- Services -->
+       
         <div class="container mt-5">
             <div class="row">
                 <div class="col-md-4">
@@ -282,7 +274,7 @@
             </div>
         </div>
 
-        <!-- Call to Action Section -->
+       
         <div class="container mt-4">
             <div class="row">
                 <div class="col-12">
@@ -300,7 +292,7 @@
                 </div>
             </div>
 
-            <!-- Informational paragraphs -->
+            
             <div class="container  mt-4">
                 <div class="row">
                     <div class="col-12">
@@ -336,11 +328,11 @@
 
             </div>
 
-            <!-- Reviews/testimonials -->
+            
             <div class="container mt-5">
                 <h2 class="text-center mb-4">Happy Guests</h2>
                 <div class="row">
-                    <!-- Testimonial 1 -->
+                    
                     <div class="col-md-4">
                         <div class="card">
                             <div class="card-body">
@@ -351,7 +343,7 @@
                             </div>
                         </div>
                     </div>
-                    <!-- Testimonial 2 -->
+                    
                     <div class="col-md-4">
                         <div class="card">
                             <div class="card-body">
@@ -363,7 +355,7 @@
                             </div>
                         </div>
                     </div>
-                    <!-- Testimonial 3 -->
+                    
                     <div class="col-md-4">
                         <div class="card">
                             <div class="card-body">
@@ -379,7 +371,7 @@
             </div>
 
 
-            <!-- Newsletter Subscription Form -->
+            
             <div class="container mt-5">
                 <h2>Stay Updated</h2>
                 <form>

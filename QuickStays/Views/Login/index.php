@@ -1,11 +1,4 @@
-<!--
- E-Commerce 
- Team Project
- Maximus Taube
- 2095310
- Philippe Ton-That
- 2033640
--->
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -66,7 +59,7 @@
 
 <?php
     session_start();
-    // Check if the user is logged in
+    
     if (isset($_SESSION['user_email'])) {
         echo '<nav class="navbar navbar-expand-lg navbar-light bg-light">';
         echo '  <a class="navbar-brand" href="/eCommerce-Project/QuickStays">QuickStays</a>';
@@ -84,7 +77,7 @@
         echo '  </div>';
         echo '</nav>';
     } else {
-        // User is not logged in, show the Login and Sign up links
+        
         echo '<nav class="navbar navbar-expand-lg navbar-light bg-light">';
         echo '  <a class="navbar-brand" href="/eCommerce-Project/QuickStays/Views/User/index.php">QuickStays</a>';
         echo '  <div class="collapse navbar-collapse" id="navbarNav">';
@@ -111,7 +104,7 @@
                 <div class="gradient-form text-center p-4">
                     <h1 class="mb-4">Login</h1>
 
-                    <!-- Display error message if present -->
+                    
                     <?php if (!empty($errorMessage)): ?>
                         <p class="text-danger">
                             <?php echo $errorMessage; ?>

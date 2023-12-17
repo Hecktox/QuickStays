@@ -1,9 +1,3 @@
-<!--
- E-Commerce 
- Team Project
- Maximus Taube
- 2095310
--->
 
 <?php
 require_once 'Models/PropertyModel.php';
@@ -12,7 +6,7 @@ class PropertyController
 {
     public function list()
     {
-        // Get the list of properties from the database by creating an instance of the PropertyModel class
+        
         $propertyModel = new PropertyModel();
         $properties = $propertyModel->getProperties();
         include 'Views/Property/list.php';
@@ -20,14 +14,14 @@ class PropertyController
 
     public function edit()
     {
-        // Check if the form was submitted via request and the "Save" button is clicked
+        
         if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['saveProperty'])) {
-            // Get PropertyID and create an instance of PropertyModel to work with data
+            
             $propertyID = $_POST['PropertyID'];
             $propertyModel = new PropertyModel();
             $property = $propertyModel->getPropertyByID($propertyID);
 
-            // Check if the property with the given PropertyID exists
+            
             if ($property) {
                 $propertyName = $_POST['PropertyName'];
                 $country = $_POST['Country'];
@@ -41,7 +35,7 @@ class PropertyController
                 $availabilityDate = $_POST['AvailabilityDate'];
                 $pricePerNight = $_POST['PricePerNight'];
 
-                // Update the property's data in the PropertyModel and display success or error message if the property is found or not
+                
                 $propertyModel->updateProperty($propertyID, $propertyName, $country, $city, $province, $streetAddress, $description, $propertyType, $numRooms, $numBathrooms, $availabilityDate, $pricePerNight);
                 header('Location: /eCommerce-Project/QuickStays/index.php?entity=property&action=list');
                 exit();
@@ -112,7 +106,7 @@ class PropertyController
 {
     $propertyModel = new PropertyModel();
 
-    // Check if the search is triggered by the property type (e.g., from the carousel)
+    
     if (isset($_GET['propertyType'])) {
         $propertyType = $_GET['propertyType'];
 
@@ -131,7 +125,7 @@ class PropertyController
 
         include 'Views/Property/index.php'; 
     }
-    // Handle other search criteria
+    
     else if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['search'])) {
         $destination = $_POST['destination'];
         $date = $_POST['date'];
@@ -139,7 +133,7 @@ class PropertyController
 
         $searchResults = $propertyModel->searchProperties($destination, $date, $guests);
 
-        // Prepare additional data required for the view
+        
         $imageFilenames = [];
         foreach ($searchResults as &$property) {
             $propertyID = $property['PropertyID'];
@@ -153,7 +147,7 @@ class PropertyController
 
         include 'Views/Property/index.php'; 
     } else {
-        // Redirect to the main property list if the search is not properly triggered
+        
         header('Location: /eCommerce-Project/QuickStays/index.php?entity=property&action=list');
         exit();
     }
@@ -202,10 +196,9 @@ class PropertyController
 
             $propertyModel = new PropertyModel();
 
-            // Get the property ID of the newly added property
             $propertyID = $propertyModel->hostProperty($PropertyName, $Country, $City, $Province, $StreetAddress, $Description, $PropertyType, $NumRooms, $NumBathrooms, $AvailabilityDate, $PricePerNight, $images);
 
-            // Redirect to the "book" action with the property ID
+            
             header("Location: /eCommerce-Project/QuickStays/index.php?entity=property&action=book&PropertyID=$propertyID");
             exit();
         } else {

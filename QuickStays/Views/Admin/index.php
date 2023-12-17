@@ -1,11 +1,3 @@
-<!--
- E-Commerce 
- Team Project
- Maximus Taube
- 2095310
- Philippe Ton-That
- 2033640
--->
 
 <!DOCTYPE html>
 <html>
@@ -21,7 +13,7 @@
 <body class="bg-light">
     <?php
     session_start();
-    // Check if the user is logged in and is an admin
+    
     if (isset($_SESSION['user_email']) && $_SESSION['user_type'] === 'Admin') {
         echo '<nav class="navbar navbar-expand-lg navbar-light bg-light">';
         echo '  <a class="navbar-brand" href="/eCommerce-Project/QuickStays">QuickStays</a>';
@@ -41,7 +33,7 @@
         echo '<div class="container mt-5">';
         echo "<h1>Welcome, " . htmlspecialchars($_SESSION['user_email']) . "</h1>";
         echo "<p class='lead'>Here's your dashboard summary:</p>";
-        // Example of adding summary stats (you'll need to replace these with real data)
+        
         echo "<div class='row'>";
         echo "<div class='col-md-4'><div class='alert alert-info'>Total Users: <strong>123</strong></div></div>";
         echo "<div class='col-md-4'><div class='alert alert-success'>Properties: <strong>45</strong></div></div>";
@@ -77,7 +69,7 @@
         echo "<h5>Recent Sign-ups</h5>";
         echo "<ul>";
     } else {
-        // User is not logged in or not an admin, show a warning message and a login link
+        
         echo '<div class="container mt-5">';
         echo '<div class="alert alert-warning" role="alert">';
         echo 'You are not authorized to access this page. Please log in as an admin.';

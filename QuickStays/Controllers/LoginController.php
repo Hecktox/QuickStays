@@ -1,9 +1,4 @@
-<!--
- E-Commerce 
- Team Project
- Maximus Taube
- 2095310
--->
+
 
 <?php
 require_once 'Models/LoginModel.php';
@@ -26,16 +21,16 @@ class LoginController
                 $_SESSION['user_id'] = $userOrAdmin['UserID'];
                 $_SESSION['user_email'] = $userOrAdmin['Email'];
 
-                // Check the UserType and set it in the session
+                
                 if ($userOrAdmin['UserType'] === 'Host') {
                     $_SESSION['user_type'] = 'Host';
                 } elseif ($userOrAdmin['UserType'] === 'Traveler') {
                     $_SESSION['user_type'] = 'Traveler';
                 } else {
-                    // UserType is null, indicating an admin
+                    
                     $_SESSION['user_type'] = 'Admin';
 
-                    // Set IsMaster in the session if it exists in the userOrAdmin array
+                    
                     if (isset($userOrAdmin['IsMaster'])) {
                         $_SESSION['IsMaster'] = $userOrAdmin['IsMaster'];
                     }
@@ -48,7 +43,7 @@ class LoginController
                 }
                 exit();
             } else {
-                // Invalid login credentials, set the error message
+                
                 $errorMessage = 'Invalid login credentials!';
             }
         }

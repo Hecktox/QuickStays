@@ -60,7 +60,7 @@
 <body>
 <?php
     session_start();
-    // Check if the user is logged in
+    
     if (isset($_SESSION['user_email'])) {
         echo '<nav class="navbar navbar-expand-lg navbar-light bg-light">';
         echo '  <a class="navbar-brand" href="/eCommerce-Project/QuickStays">QuickStays</a>';
@@ -79,7 +79,7 @@
         echo '  </div>';
         echo '</nav>';
     } else {
-        // User is not logged in, show the Login and Sign up links
+        
         echo '<nav class="navbar navbar-expand-lg navbar-light bg-light">';
         echo '  <a class="navbar-brand" href="/eCommerce-Project/QuickStays/Views/User/index.php">QuickStays</a>';
         echo '  <div class="collapse navbar-collapse" id="navbarNav">';

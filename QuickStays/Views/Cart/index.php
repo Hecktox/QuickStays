@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Your Cart</title>
-    <!-- Include Bootstrap CSS (you can adjust the URL to your specific version) -->
+    
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
         body {
@@ -54,7 +54,7 @@
         <h1 class="text-center">Your Cart</h1>
 
         <?php
-        // Check if there are pending bookings (carts) to display
+        
         if (!empty($carts)):
             ?>
             <table class="table">
@@ -93,7 +93,7 @@
             <?php echo $totalPrice; ?>
         </p>
 
-        <!-- Add a form for checkout -->
+        
         <form method="post" action="/eCommerce-Project/QuickStays/index.php?entity=cart&action=checkout">
             <button type="submit" class="btn btn-primary btn-block">Checkout</button>
         </form><br>
@@ -104,7 +104,7 @@
 
     </div>
 
-    <!-- Include Bootstrap JS (you can adjust the URL to your specific version) -->
+    
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>

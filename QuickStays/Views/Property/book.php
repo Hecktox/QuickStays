@@ -1,11 +1,4 @@
-<!--
- E-Commerce 
- Team Project
- Maximus Taube
- 2095310
- Philippe Ton-That
- 2033640
--->
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -48,7 +41,7 @@
         echo '  </div>';
         echo '</nav>';
     } else {
-        // User is not logged in, show the Login and Sign up links
+        
         echo '<nav class="navbar navbar-expand-lg navbar-light bg-light">';
         echo '  <a class="navbar-brand" href="/eCommerce-Project/QuickStays/Views/User/index.php">QuickStays</a>';
         echo '  <div class="collapse navbar-collapse" id="navbarNav">';
@@ -75,7 +68,7 @@
     ?>
 
     <div class="container my-4">
-        <!-- Images Carousel -->
+        
         <div id="propertyImagesCarousel" class="carousel slide" data-ride="carousel">
             <div class="carousel-inner property-images">
                 <?php foreach ($imageFilenames as $index => $imageFilename): ?>
@@ -94,7 +87,7 @@
             </a>
         </div>
 
-        <!-- Property Details -->
+        
         <?php if ($property): ?>
             <div class="card">
                 <div class="card-body">
@@ -105,12 +98,12 @@
                         <?php echo $property['City'] . ', ' . $property['Country']; ?>
                     </h6>
                     <p class="card-text">
-                        <?php // Additional property details ?>
+                        <?php  ?>
                     </p>
                 </div>
             </div>
 
-            <!-- Booking Form -->
+            
             <div class="mt-4">
                 <h3>Book Your Stay</h3>
                 <form method="POST"
@@ -137,7 +130,7 @@
             </div>
         <?php endif; ?>
 
-        <!-- Reviews Section -->
+        
         <div class="reviews-section mt-4">
             <h3>Guest Reviews</h3>
 
@@ -146,10 +139,10 @@
             $reviews = $propertyModel->getReviewsByPropertyId($property['PropertyID']);
             $userId = isset($_SESSION['user_id']) ? $_SESSION['user_id'] : null;
 
-            // Check if the user is logged in and has booked the property
+            
             if ($userId && $propertyModel->hasUserBookedProperty($userId, $property['PropertyID'])):
                 ?>
-                <!-- Review Submission Form -->
+                
                 <div class="review-form mt-4">
                     <h4>Add Your Review</h4>
                     <form method="POST" action="/eCommerce-Project/QuickStays/index.php?entity=review&action=add"
@@ -183,7 +176,7 @@
                 </div>
             <?php endif; ?>
 
-            <!-- Displaying Existing Reviews -->
+            
             <?php if (!empty($reviews)): ?>
                 <?php foreach ($reviews as $review): ?>
                     <div class="review">

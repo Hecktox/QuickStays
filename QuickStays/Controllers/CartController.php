@@ -1,9 +1,4 @@
-<!--
- E-Commerce 
- Team Project
- Maximus Taube
- 2095310
--->
+
 
 <?php
 require_once 'Models/CartModel.php';
@@ -93,7 +88,7 @@ class CartController
             $userID = $_SESSION['user_id'];
             $cartModel = new CartModel();
 
-            // Retrieve the user's pending bookings using the new function
+           
             $carts = $cartModel->getPendingBookingsByUserID($userID);
 
             // Calculate the total price
@@ -104,8 +99,7 @@ class CartController
 
             include 'Views/Cart/index.php';
         } else {
-            // User is not logged in, you can handle this case as needed
-            // Redirect to the login page or display an error message
+            
             header('Location: /eCommerce-Project/QuickStays/index.php?entity=login&action=login');
             exit();
         }
@@ -119,27 +113,27 @@ class CartController
             $userID = $_SESSION['user_id'];
             $cartModel = new CartModel();
 
-            // Calculate the current date and time
-            $currentDate = date('Y-m-d H:i:s'); // Format as needed
+           
+            $currentDate = date('Y-m-d H:i:s'); 
 
-            // Retrieve the user's pending bookings
+            
             $pendingBookings = $cartModel->getPendingBookingsByUserID($userID);
 
             foreach ($pendingBookings as $booking) {
-                // Update the status of the booking to "Confirmed"
+                
                 $bookingID = $booking['BookingID'];
                 $cartModel->updateBookingStatus($bookingID, 'Confirmed');
 
-                // Add the booking with the current date to the cart table
+                
                 $propertyID = $booking['PropertyID'];
                 $cartModel->addCart($userID, $propertyID, $currentDate);
             }
 
-            // Redirect to the cart page after checkout
+            
             header('Location: /eCommerce-Project/QuickStays/index.php?entity=cart&action=success');
             exit();
         } else {
-            // User is not logged in, handle as needed
+            
             header('Location: /eCommerce-Project/QuickStays/index.php?entity=login&action=login');
             exit();
         }
@@ -153,12 +147,12 @@ class CartController
             $userID = $_SESSION['user_id'];
             $cartModel = new CartModel();
 
-            // Retrieve the user's booking history (cart entries)
+            
             $bookingHistory = $cartModel->getCartsByUserID($userID);
 
-            include 'Views/Cart/history.php'; // Create the history view
+            include 'Views/Cart/history.php'; 
         } else {
-            // User is not logged in, handle as needed
+            
             header('Location: /eCommerce-Project/QuickStays/index.php?entity=login&action=login');
             exit();
         }

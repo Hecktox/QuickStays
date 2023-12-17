@@ -1,17 +1,10 @@
-<!--
- E-Commerce 
- Team Project
- Maximus Taube
- 2095310
- Philippe Ton-That
- 2033640
--->
+
 
 <?php
 session_start();
 
 if (!isset($_SESSION['user_email']) || $_SESSION['user_type'] !== 'Admin') {
-    // Redirect to the login page if the user isn't logged in or if the user isn't an admin
+    
     header('Location: /eCommerce-Project/QuickStays/index.php?entity=user&action=index');
     exit();
 }
@@ -22,13 +15,13 @@ if (!isset($_SESSION['user_email']) || $_SESSION['user_type'] !== 'Admin') {
 
 <head>
     <title>Edit Admin</title>
-    <!-- Include Bootstrap CSS -->
+    
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.9.5/umd.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script>
-        // JavaScript function to toggle password visibility
+       
         function togglePasswordVisibility() {
             var passwordInput = document.getElementById("password");
             var showPasswordButton = document.getElementById("showPassword");

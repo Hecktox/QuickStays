@@ -1,9 +1,4 @@
-<!--
- E-Commerce 
- Team Project
- Maximus Taube
- 2095310
--->
+
 
 <?php
 require_once 'db_connect.php';
@@ -42,7 +37,7 @@ class PropertyModel
 
         $propertyID = $db->lastInsertId();
 
-        // Create a folder for the property in the images/property directory
+        
         $propertyFolder = "images/property/$propertyID";
 
         if (!file_exists($propertyFolder)) {
@@ -54,26 +49,26 @@ class PropertyModel
     {
         global $db;
 
-        // Retrieve the property information before deletion
+        
         $query = $db->prepare("SELECT * FROM Properties WHERE PropertyID = ?");
         $query->execute([$propertyID]);
         $property = $query->fetch(PDO::FETCH_ASSOC);
 
         if ($property) {
-            // Delete the property from the database
+            
             $deleteQuery = $db->prepare("DELETE FROM Properties WHERE PropertyID = ?");
             $deleteQuery->execute([$propertyID]);
 
-            // Remove the corresponding folder in the images/property directory
+            
             $propertyFolder = "images/property/$propertyID";
             if (file_exists($propertyFolder) && is_dir($propertyFolder)) {
-                // Remove the folder and its contents
+                
                 $this->rrmdir($propertyFolder);
             }
         }
     }
 
-    // Recursive function to remove a directory and its contents
+    
     private function rrmdir($dir)
     {
         if (is_dir($dir)) {
@@ -131,7 +126,7 @@ class PropertyModel
 
     public function hasUserBookedProperty($userId, $propertyId)
     {
-        global $db; // Ensure you have a database connection variable $db
+        global $db; 
         $query = $db->prepare("SELECT COUNT(*) FROM Bookings WHERE UserID = ? AND PropertyID = ? AND Status = 'Confirmed'");
         $query->execute([$userId, $propertyId]);
         return $query->fetchColumn() > 0;
@@ -141,13 +136,13 @@ class PropertyModel
     {
         global $db;
 
-        // Use the existing addProperty function to add basic property information
+        
         $this->addProperty($PropertyName, $Country, $City, $Province, $StreetAddress, $Description, $PropertyType, $NumRooms, $NumBathrooms, $AvailabilityDate, $PricePerNight);
 
-        // Get the property ID of the newly added property
+        
         $propertyID = $db->lastInsertId();
 
-        // Handle image uploads and naming
+        
         for ($i = 1; $i <= 3; $i++) {
             $imageField = "Image$i";
             if (isset($images[$imageField]) && !empty($images[$imageField]['name'])) {

@@ -1,16 +1,11 @@
-<!--
- E-Commerce 
- Team Project
- Maximus Taube
- 2095310
--->
+
 
 <?php
 require_once 'db_connect.php';
 
 class UserModel
 {
-    // Method to get all users from the database
+    
     public function getUsers()
     {
         global $db;
